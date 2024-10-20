@@ -1,0 +1,393 @@
+JSP
+====
+JSP stands for Java/Jarkata Server Pages.
+
+JSP is a server side dynamic web resource program which is used to generate web applications.
+
+
+Limitations with Servlets
+-------------------------
+1) To work with servlet strong java knowledge required.
+
+2) It is not suitable for non-java programmers.
+
+3) It does not give any implicit object.
+
+4) Configuration of each servlet program in web.xml file is mandatory.
+
+5) Handling exceptions are mandatory.
+
+6) We can't maintain HTML code and Java code seperately.
+
+To overcome this above limitations we need to use JSP.
+
+
+Advantages of JSP 
+------------------
+1) To work with JSP strong java knowledge is not required.
+
+2) It is suitable for java and non-java programmers.
+
+3) It gives 9 implicit objects.
+
+4) It supports tag based language.
+
+5) It allows us to work with custom tags and third party supplied tags.
+
+6) Configuration of each jsp program in web.xml file is optional.
+
+7) Handling exceptions are optional.
+
+8) We can maintain HTML code and Java Code seperately.
+
+9) It contains all the features of servlets.
+
+
+
+Q) What is difference between HTML and JSP ?
+
+HTML						JSP
+-------						------
+HTML stands for Hypertext Markup Language.	JSP stands for Java Server Pages.'
+
+It is a client side web resource program.	It is a server side web resource program.
+
+It is used to develop static web pages.		It is used to develop dynamic web pages.
+
+It requires browser window for execution.	It requires server for execution.
+
+It does not support custom tags.		It supports custum tags.
+
+We can't write java code.			We can write java code.
+
+
+First Web Aplication Development Having JSP As Web Resource Program
+====================================================================
+
+Deployment Directory structure
+------------------------------
+JspApp1
+|
+|----Java Resources
+|
+|----WebContent
+	|
+	|----ABC.jsp
+	|
+	|----WEB-INF
+		|
+		|----web.xml 
+Note:
+----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+
+ABC.jsp
+-------
+<center>
+	<h1>
+		Current Date and Time :  <br> 
+		<%
+			java.util.Date d=new java.util.Date();
+			out.println(d);
+		%>
+	</h1>
+</center>
+
+
+web.xml
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+  <welcome-file-list>
+  	<welcome-file>ABC.jsp</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
+
+Request url
+---------
+	http://localhost:8080/JspApp1/	
+
+
+Configuration of JSP program in web.xml file
+=============================================
+Deployment Directory structure
+------------------------------
+JspApp1
+|
+|----Java Resources
+|
+|----WebContent
+	|
+	|----ABC.jsp
+	|
+	|----WEB-INF
+		|
+		|----web.xml 
+Note:
+----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+
+ABC.jsp
+-------
+<center>
+	<h1>
+		Current Date and Time :  <br> 
+		<%
+			java.util.Date d=new java.util.Date();
+			out.println(d);
+		%>
+	</h1>
+</center>
+
+
+web.xml
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+ 
+    <servlet>
+ 	<servlet-name>ABC</servlet-name>
+ 	<jsp-file>/ABC.jsp</jsp-file>
+    </servlet> 
+    <servlet-mapping>
+    	<servlet-name>ABC</servlet-name>
+    	<url-pattern>/test</url-pattern>
+    </servlet-mapping>
+ 
+</web-app>
+
+
+Request url
+---------
+	http://localhost:8080/JspApp1/test 
+	http://localhost:8080/JspApp1/ABC.jsp
+
+
+
+How to hide web application accessible by using file name
+=========================================================
+To access web application by using only url pattern we need to keep ABC.jsp file inside WEB-INF folder.
+
+Deployment Directory structure
+------------------------------
+JspApp1
+|
+|----Java Resources
+|
+|----WebContent
+	|
+	|
+	|----WEB-INF
+		|
+		|----ABC.jsp
+		|
+		|----web.xml 
+Note:
+----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+
+ABC.jsp
+-------
+<center>
+	<h1>
+		Current Date and Time :  <br> 
+		<%
+			java.util.Date d=new java.util.Date();
+			out.println(d);
+		%>
+	</h1>
+</center>
+
+
+web.xml
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+ 
+    <servlet>
+ 	<servlet-name>ABC</servlet-name>
+ 	<jsp-file>/WEB-INF/ABC.jsp</jsp-file>
+    </servlet> 
+    <servlet-mapping>
+    	<servlet-name>ABC</servlet-name>
+    	<url-pattern>/test</url-pattern>
+    </servlet-mapping>
+ 
+</web-app>
+
+
+Request url
+---------
+	http://localhost:8080/JspApp1/test    (valid)
+	http://localhost:8080/JspApp1/ABC.jsp (invalid)
+
+
+Life cycle Methods of JSP
+==========================
+JSP contains three life cycle methods.
+
+1) _jspInit()
+------------
+	It is used for instantiation event.
+	This method will execute just before JES class object creation.
+
+
+2) _jspService()
+----------------
+	It is used for request arrival event.
+	This method will execute when request goes to JSP file.
+
+3) _jspDestroy() 
+----------------
+	It is used for destruction event.
+	This method will execute just before JES class object destruction.
+
+
+
+
+
+Phases in JSP 
+==============
+We have two phases in JSP.
+
+1) Translation phase 
+
+2) Request Processing phase 
+
+1) Translation phase
+---------------------
+	In translation phase, our JSP program converts to JES class.
+	JES stands for Java Equivalent Servlet.
+
+2) Request Processing phase 
+------------------------------
+	In request processing phase,our JSP program will execute and result will send to 
+	browser window.
+
+Diagram: jsp1.1
+
+
+
+
+Q) How to enable <load-on-startup> and what happens if we enable <load-on-startup>?
+
+We can enable <load-on-startup> in web.xml file.
+
+web.xml
+-------
+	<web-app>
+		<servlet>
+ 			<servlet-name>ABC</servlet-name>
+ 			<jsp-file>/WEB-INF/ABC.jsp</jsp-file>
+			<load-on-startup>1</load-on-startup>
+ 		</servlet> 
+   	 	<servlet-mapping>
+    			<servlet-name>ABC</servlet-name>
+    			<url-pattern>/test</url-pattern>
+    		</servlet-mapping>
+	</web-app>
+
+If we enable <load-on-startup> then translation phase will be performed during the server startup or during the deployment of web application.
+
+In general, JES class object will be ready before we give the request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

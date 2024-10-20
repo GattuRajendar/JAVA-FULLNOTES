@@ -1,0 +1,276 @@
+JUnit
+=======
+Junit is a unit testing framework for java programming.
+
+Unit testing means testing small piece of code independently.
+
+In realtime, developers are responsible to perform unit testing.
+
+Unit testing plays important role in TDD (Test Driven Development).
+
+The latest version of JUnit is 5.
+
+To perform unit testing we need to create test cases or test suit.
+
+
+Steps to perform unit testing in java
+=======================================
+
+JunitProj
+|
+|---src/main/java
+|	|
+	|---com.ihub.www
+		|
+		|---Demo.java
+
+|---src/main/resources
+|
+|---src/test/java
+	|	
+	|---com.ihub.www
+		|
+		|---DemoTest.java
+|
+|---pom.xml 
+
+
+step1:
+-----
+	Create a simple maven archetype project.
+	ex:
+		File --> new --> Maven project --> create simple project (select on checkbox)
+		---> Next -->  
+
+		Group id : com.ihub.www
+		Artifact id : JunitProj
+		version : (keep same)
+		packaging : jar 
+		Name : JunitProj
+		Description : Demostration on Junit  --> Finish. 
+
+step2:
+-----
+	Create a "com.ihub.www" package inside "src/main/java" folder.
+	ex:
+		right click to src/main/java --> new --> package --> 
+		Name : com.ihub.www --> Finish. 
+
+step3:
+------
+	Create a Demo.java file inside "com.ihub.www" package.
+	ex:
+		right click to com.ihub.www pkg --> new --> class -->
+		Name : Demo  --> finish.
+
+Demo.java
+--------
+package com.ihub.www;
+
+public class Demo 
+{
+	public static int sum(int a,int b)
+	{
+		return a+b;
+	}
+	
+	public static String concatination(String str1,String str2)
+	{
+		return str1+str2;
+	}
+}
+
+step4:
+-----
+	Create test cases for two methods i.e sum() and concatination() method.
+	ex:
+		Right click to Demo.java --> new --> others --> Junit --> Junit Test case 
+		--> Next --> Next --> Select sum() and concatination() (select checkbox) -->
+		Finish --> ok.
+
+step5:
+------
+	Write the logic inside DemoTest.java file.
+
+DemoTest.java
+-------------
+package com.ihub.www;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+public class DemoTest {
+
+	@Test
+	public void testSum() 
+	{
+		int result=Demo.sum(10,20);
+		assertEquals(30,result);
+	}
+
+	@Test
+	public void testConcatination() 
+	{
+		String result=Demo.concatination("ihub","talent");
+		assertEquals("ihubtalent",result);
+	}
+
+}
+
+step6:
+------
+	Run the Junit Test cases.
+	ex:
+		Right click to DemoTest.java file --> run as --> Junit Test 
+		
+Note:
+------
+	Green color indicates test cases are passed.
+	Brown color indicates test cases are failed.		
+	
+GIT/GITHUB
+==========
+
+Q) What is the difference between GIT and GITHUB ?
+
+GIT						GITHUB 
+------						------
+It is a distributed version control 		It is a hosting server for GIT.		
+system which is used track the changes 
+in a file during the project development.
+
+It is a software.				It is a service.
+
+It is locally installed on a computer.		It is hosted on web.
+
+It contains local repository.			It contains remote repository.
+
+It is command line.				It is GUI (Graphical User Interface).
+
+
+Types Of GIT Stages 
+===================
+We have three GIT stages.
+
+1) Working Directory 
+
+2) Staging Area 
+
+3) Repository 
+
+Diagram: jsp7.1
+ 
+	
+Steps to push the code to GITHUB
+==================================
+step1:
+-----
+	Create a account in GITHUB.
+	ex:
+		https://github.com
+
+
+step2:
+-----
+	Login to GITHUB account with username and password.
+
+step3:
+------
+	Create a remote repository. 
+	ex:
+		https://github.com/NiyazulHasan/ih-java-033
+
+step4:
+-----
+	Download and Install GIT software.
+	ex:
+		https://git-scm.com/downloads
+
+step5:
+------
+	Create a "mydata" folder on desktop and keep some files.
+
+step6:
+------
+	Open the git bash from mydata folder.
+
+
+step7:
+------
+	Initialize the git empty repository.
+	ex:
+		git init 
+
+step8:
+-------
+	
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

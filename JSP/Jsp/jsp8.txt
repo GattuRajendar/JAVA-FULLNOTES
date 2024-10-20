@@ -1,0 +1,184 @@
+	
+Steps to push the code to GITHUB
+==================================
+step1:
+-----
+	Create a account in GITHUB.
+	ex:
+		https://github.com
+
+
+step2:
+-----
+	Login to GITHUB account with username and password.
+
+step3:
+------
+	Create a remote repository. 
+	ex:
+		https://github.com/NiyazulHasan/ih-java-033
+
+step4:
+-----
+	Download and Install GIT software.
+	ex:
+		https://git-scm.com/downloads
+
+step5:
+------
+	Create a "mydata" folder on desktop and keep some files.
+
+step6:
+------
+	Open the git bash from mydata folder.
+
+
+step7:
+------
+	Initialize the git empty repository.
+	ex:
+		git init 
+
+step8:
+-------
+	To see the list branches we need to run below command.
+	ex:
+		git  branch 
+
+step9:
+------
+	Change branch from master to main.
+	ex:
+		git branch --move master main 
+
+step10:
+-------
+	Check the status.
+	ex:
+		git status
+
+step11:
+-------
+	Add the files to staging area.
+	ex:
+		git  add  . 
+
+step12:
+-------
+	Commit the changes.
+	ex:
+		git commit -m "my first commit"
+
+step13:
+-------
+	Execute below command for identity.
+	ex:
+
+	git config --global user.email "ulhasan7867@gmail.com"
+	or
+  	git config --global user.name "Niyazul"
+
+step14:
+------
+	Add remote origin.
+	ex:
+		git remote add origin https://github.com/NiyazulHasan/ih-java-033	
+
+step15:
+------
+	Push the code to remote origin.
+	ex:
+		git push -f origin main 
+
+step16:
+--------
+	Refresh remote repository.
+	ex:
+		https://github.com/NiyazulHasan/ih-java-033
+
+
+How to pull the code from GITHUB
+================================
+step1:
+------
+	Create a "java-data" folder on desktop.
+
+step2:
+-----
+	Open git from "java-data" folder.
+	
+step3:
+-----
+	Initialize git empty repository.
+	ex:
+		git init
+
+step4:
+-----
+	Pull the code from github.
+	ex:
+		git pull https://github.com/NiyazulHasan/ih-java-033
+
+
+
+
+
+
+
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
