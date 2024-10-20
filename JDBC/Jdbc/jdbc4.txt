@@ -1,0 +1,417 @@
+Non-Select Queries
+==================
+
+Q) Write a JDBC application to insert a record into student table?
+
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class InsertApp {
+
+	public static void main(String[] args)throws Exception  
+	{
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the student no:");
+		int no=sc.nextInt();
+		
+		System.out.println("Enter the student name :");
+		String name=sc.next();
+		
+		System.out.println("Enter the student address :");
+		String add=sc.next();
+		
+		//convert inputs according to SQL query.
+		name="'"+name+"'";
+		add="'"+add+"'";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		Statement st=con.createStatement();
+		String qry="insert into student values("+no+","+name+","+add+")";		
+		int result=st.executeUpdate(qry);
+		if(result==0)
+			System.out.println("No Record inserted");
+		else
+			System.out.println(result+" Record inserted");
+		
+		st.close();
+		con.close();
+	}
+}
+
+
+Q) Write a jdbc application to update student name based on student number?
+
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class UpdateApp {
+
+	public static void main(String[] args)throws Exception  
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the student no :");
+		int no=sc.nextInt();//104
+		
+		System.out.println("Enter the student name :");
+		String name=sc.next();//gogo
+		
+		//converting inputs according to SQL query.
+		name="'"+name+"'";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		Statement st=con.createStatement();
+		
+		String qry="update student set sname="+name+" where sno="+no;
+		
+		int result=st.executeUpdate(qry);
+		
+		if(result==0)
+			System.out.println("No Record Updated");
+		else
+			System.out.println(result+ " Record Updated");
+		
+		st.close();
+		con.close();
+	}
+}
+
+Q) Write a jdbc application to delete the record from student table based on student number?
+
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class DeleteApp 
+{
+	public static void main(String[] args)throws Exception 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the student no :");
+		int no=sc.nextInt();
+			
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		Statement st=con.createStatement();
+		
+		String qry="delete from student where sno="+no;
+		
+		int result=st.executeUpdate(qry);
+		
+		if(result==0)
+			System.out.println("No Record Deleted");
+		else
+			System.out.println(result+" Record Deleted");
+		st.close();
+		con.close();
+	}
+}
+
+
+Type1 JDBC Driver Architecture / JDBC-ODBC Bridge Driver (Partly Java Driver)
+==============================================================================
+Typ1 JDBC driver is not designed to interact with database software directly.
+
+It is designed to take the support of ODBC driver and Vendor DB library to locate and interact with database software.
+
+Diagram: jdbc4.1
+
+Advantages:
+
+1) It is a built-in driver of JDK.
+
+2) Using Type1 JDBC driver we can interact with any database software.
+
+Disadvantages:
+
+1) This driver performance is low.It is not suitable for medium and large scale projects.Hence it 
+   is not a industry standard driver.
+
+2) To work with Type1 JDBC driver we need to arrange ODBC driver and vendor db library.
+
+3) Since ODBC driver and vendor db library present at client side so it is not suitable to perform
+   untrusted applets to database communication.
+
+
+Type2 JDBC Driver Architecture / Native API (Party Java Driver)
+===============================================================
+Type2 JDBC driver is not designed to interact with database software directly.
+
+It is designed to take the support of vendor db library to locate and interact with database software.
+
+Diagram: jdbc4.2
+
+Advantages:
+
+1) Type2 JDBC driver does not support ODBC driver.
+
+2) It gives better performance when compare to Type1 JDBC driver.
+
+Disadvantages:
+
+1) This driver performance is quite slow.It is not suitable for medium and large scale project.
+   Hence it is not a industry standard driver.
+
+2) To work with Type2 JDBC driver we need to arrage vendor db library seperately.
+
+3) Since vendor db library present at client side so it is not suitable to perform untrusted 
+   applets to database communication.
+
+4) For every database we need to arrange type2 jdbc driver seperately.
+
+
+
+
+Interview Question
+==================
+
+
+Q) In how many ways we can create objects in Java?
+
+There are five ways to create objects in java.
+
+1) Using new keyword 
+
+2) Using newInstance() method 
+
+3) Using clone() method 
+
+4) Using Deserialization 
+
+5) Using newInstance() method of Constructor class. 
+
+
+1) Using new keyword 
+---------------------
+public class Test 
+{
+	Test()
+	{
+		System.out.println("constructor");
+	}
+	
+	public static void main(String[] args) 
+	{
+		Test t=new Test();
+	}
+}
+
+2) Using newInstance() method
+-----------------------------
+public class Test 
+{
+	Test()
+	{
+		System.out.println("constructor");
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		Class.forName("Test").newInstance();
+	}
+}
+
+3) Using clone() method 
+------------------------
+public class Test implements Cloneable
+{
+	Test()
+	{
+		System.out.println("constructor");
+	}
+
+	public static void main(String[] args) throws Exception
+	{
+		Test t=new Test();
+		
+		Test t1=(Test)t.clone();
+		
+		System.out.println(t.hashCode());
+		System.out.println(t1.hashCode());
+	}
+}
+
+4) Using Deserialization
+--------------------------
+
+import java.io.*;
+public class Test implements Serializable
+{
+	//instance variable
+	int i=10;
+	
+	Test()
+	{
+		System.out.println("constructor");
+	}
+
+	public static void main(String[] args) throws Exception
+	{
+		//Serialization 
+		FileOutputStream fos=new FileOutputStream("abc.txt");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		Test t=new Test();
+		oos.writeObject(t);
+		
+		//Deserialization
+		FileInputStream fis=new FileInputStream("abc.txt");
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Test t1=(Test)ois.readObject();
+		
+		
+	}
+}
+
+
+
+
+
+5) Using newInstance() method of Constructor class.
+-----------------------------------------
+
+import java.lang.reflect.*;
+public class Test 
+{
+	
+	Test()
+	{
+		System.out.println("constructor");
+	}
+
+	public static void main(String[] args) throws Exception
+	{
+		
+		Constructor<Test> constructor=Test.class.getDeclaredConstructor();
+		constructor.newInstance();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
