@@ -1,0 +1,142 @@
+Cloud computing 
+=================
+It is a on demand service for IT resources with pay as you go model.
+
+Clouds 
+------
+	AWS
+	Azure
+	GCP 
+	IBM cloud 
+	Alibaba cloud 
+	and etc.
+
+
+Cloud Business/Service models
+=============================
+We have three business/service models in cloud.
+
+1) IaaS (Infrastructure as a Service)
+
+2) PaaS (Platform as a Service)
+
+3) SaaS (Software as a Service)
+
+All the above business models supported by every cloud.
+
+Some group of expertise engineers they will select any one business model for their organization.
+
+Diagram: aws2.1
+
+
+Create a account in AWS 
+=======================
+To create a account in AWS we need to having following things.
+
+1) Email Id 
+
+2) Debit/Credit Card
+
+3) Minimum 2 rupees need to maintain in an account.
+
+Note:
+-----
+If we use credit card to create an account then it will take 2 to 4 hours to create an account.
+
+If we use debit card to create an account then it will take less then 24 hours to create an account.
+
+
+Types of Operating System
+=========================
+We have two types of operating systems.
+
+1) GUI (Graphical User Interface)
+---------------------------------
+	ex:
+		windows
+
+2) CLI (Command Line Interface)
+--------------------------------
+	ex:
+		Linux 
+
+	In the space of operating system CLI is widely used.
+	99% of cloud environment is CLI that to linux.
+
+
+
+Q) Who was the richest person for a long period of time?
+
+	Bill Gates 	
+
+
+
+Linus Torwalds is a man behind the linux OS.
+
+He thought, to run operating system why should I buy hardware from you and why have to pay for licencing to it.By keeping these aspects in mind he created an Operating system which is free for every one and everyone should have capability to access code of it. 
+
+He started an open source project called linux (linux kernel).
+
+kernel is a first layer of the OS.
+
+Every OS is having it's own kernel.
+ex:
+	Linux kernel : it is a piece of software which interacts with hardware.
+		> He wants to make a free CLI OS
+		> Should run on any hardware
+		> OS should be open source
+		> GNUX (Generally Not Unix)
+	
+There are 300+ flavours / Distributions in linux(vendors).
+
+All the 300+ operating system are clone either from "RedHat OS" or "Debian".
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
