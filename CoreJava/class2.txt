@@ -1,0 +1,153 @@
+Comments in java
+================
+Comments are created for documentation purpose.
+
+Comments are used to improve readability of our code.
+
+It is highly recommanded to use comments in our regular programming.
+
+Diagram: class2.1
+
+Comments will not display in output because they will ignore by the compiler.
+
+In java, we have two types of comments.
+
+1) Single Line Comment 
+---------------------
+	It is used to comment a single line.
+	ex:
+		// comment here 
+
+2) Multiple Line Comment 
+-------------------------
+	It is used to comment multiple lines.
+	ex:
+		/*
+			-
+			- comment here 
+			-
+		*/
+
+ex:
+---
+	//class declaration 
+	class Test
+	{
+		//main method 
+		public static void main(String[] args)
+		{
+
+			//variable declaration 
+			int i=10;
+			
+			//output stmt 
+			System.out.println(i);	
+		}
+	}
+
+
+Project
+=======
+It is a individual and collaborative work done by the software engineers to achieve perticular goal.
+
+A project is a collection of modules.
+
+We have following list of modules.
+ex:
+	registration module 
+	login module
+	payment module 
+	report generation module 
+	admin module 
+	and etc.
+
+Every project contains two domains.
+
+1) Technical domain 
+-------------------
+	It describes using which language we developed our project.
+	ex:
+		Java
+
+2) Functional domain
+-------------------
+	It describes state of a project.
+	ex:
+		Healthcare domain 
+		Banking domain 
+		Insaurance domain
+		ERP domain 
+		and etc. 
+
+Interview Question
+-------------------
+
+Q) What is the difference between JDK, JRE and JVM?
+
+JDK
+---
+JDK stands for Java Development Kit.
+
+It is a installable software which consist of Java Runtime Environment (JRE), Java Virtual Machine (JVM), compiler (javac), interpreter (java), an archiever (.jar), document generator (javadoc) and 
+other tools needed for java application development.
+
+JRE
+----
+JRE stands for Java Runtime Environment.
+It provides very good environment to run java applications only.
+
+JVM
+----
+JVM stands for Java Virtual Machine.
+It is an interpreter which is used to execute our program line by line procedure.	
+
+
+Diagram: class2.2
+
+
+
+Q) Is java platform dependent or independent?
+
+	Java is a platform independent.
+
+	
+Q) Is JVM platform dependent or independent?
+
+	JVM is a platform dependent.	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

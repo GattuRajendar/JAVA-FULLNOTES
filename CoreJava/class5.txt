@@ -1,0 +1,185 @@
+History of Java
+===============
+In 1990, Sun Micro system took one project to develop a software called consumer electronic device which can be controlled by a remote like setup box.That time project was called Stealth project and later it was renamed to Green project.
+
+James Gosling, Mike Sheradin and Patrick Naughton were there to develop the project and they have met in a place called Aspan/Colarado to start the work with Graphic System. James Gosling decided to use C and C++ languages to develop the project.But problem what they have faced is C and C++ languages are system dependent. Then James Gosling decided why don't we create our own programming language which is system independent.
+
+In 1991, they have developed on programming language called an OAK.OAK means strength , itself is a coffee seed name and it is a national tree for many contries like Germany, France, USA and etc.
+
+Later in 1995, they have renamed OAK to JAVA. Java is a island of an Indonaisa where first coffee of seed was produced and during the development of project they were consuming lots of coffee's.Hence symbol of java is a cup of coffee with saucer.
+
+
+Interview Questions
+-------------------
+Q) In which year java was developed ?
+
+	In 1995
+
+Q) Java was developed by ?
+
+	James Gosling 
+
+Q) Java originally known as ?
+
+	OAK
+
+Q) What is Java?
+
+Java is a object oriented, platform independent, case sensitive, strongly typed checking,
+high level, open source programming language developed by James gosling in the year of 1995.
+
+or
+
+Java is a versatile language which is used to develop various types of applications like 
+Distributed applications, Enterprise applications, ERP applications and etc.
+
+
+
+Q) What is Garbage Collector?
+
+Garbage Collector is used to destroy unused or useless objects from Java.
+
+
+Q) In how many ways we can call garbage collector ?
+
+We can call garbage collector in two ways.
+
+1) System.gc()
+
+2) Runtime.getRuntime().gc()
+
+
+
+
+Q) What are the features of Java?
+
+We have following important features in java.
+
+1) Simple  
+
+2) Object oriented 
+
+3) Platform independent 
+
+4) Architecture Neutral 
+
+5) Robust 
+
+6) Highly secured
+
+7) Portable
+
+8) Multithreaded 
+
+9) Dynamic 
+
+10) Distributed 
+
+and etc.
+
+
+Q) What is application?
+
+A set of programs is called application.
+or
+A collection of programs is called application.
+
+
+Q) What is Program?
+
+A set of instructions is called program.
+or 
+A collection of instructions is called program.
+
+
+Q) What is instruction?
+
+A collection of tokens is called instruction.
+or
+Set of tokes is called instruction.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,443 @@
+Q) Write a java program to perform sum of diagonal elements?
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][] arr={
+						{1,2,3},
+						{4,5,6},
+						{7,8,9}
+					};
+
+		int rows=arr.length;
+		int cols=arr[0].length;
+
+		int sum=0;
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				if(i==j)
+				{
+					sum+=arr[i][j];
+				}
+			}
+		}
+
+		System.out.println("sum of diagonal elements is ="+sum);
+	}
+}
+
+
+Q) Write a java program to display sum of upper triangle elements?
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][] arr={
+						{1,2,3},
+						{4,5,6},
+						{7,8,9}
+					};
+
+		int rows=arr.length;
+		int cols=arr[0].length;
+
+		int sum=0;
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				if(i<j)
+				{
+					sum+=arr[i][j];
+				}
+			}
+		}
+
+		System.out.println("sum of upper triangle elements is ="+sum);
+	}
+}
+
+
+Q) Write a java program to perform sum of lower triangle elements?
+
+ex:
+--
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][] arr={
+						{1,2,3},
+						{4,5,6},
+						{7,8,9}
+					};
+
+		int rows=arr.length;
+		int cols=arr[0].length;
+
+		int sum=0;
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				if(i>j)
+				{
+					sum+=arr[i][j];
+				}
+			}
+		}
+
+		System.out.println("sum of lower triangle elements is ="+sum);
+	}
+}
+
+
+Q) Write a java program to display array elements in spiral form?
+
+Input:
+	1 2 3 
+	4 5 6 
+	7 8 9 
+
+output:
+	1 2 3 6 9 8 7 4 5 
+
+ex:
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][] matrix={
+						{1,2,3},
+						{4,5,6},
+						{7,8,9}
+					};
+
+		int rows=matrix.length;
+		int cols=matrix[0].length;
+
+		int top=0;
+		int bottom=rows-1;
+		int left=0;
+		int right=cols-1;
+
+		while(true)
+		{
+			if(left>right)
+			{
+				break;
+			}
+
+			for(int i=left;i<=right;i++)
+			{
+				System.out.print(matrix[top][i]+" ");
+			}
+			top++;
+
+			if(top>bottom)
+			{
+				break;
+			}
+			for(int i=top;i<=bottom;i++)
+			{
+				System.out.print(matrix[i][right]+" ");
+			}
+			right--;
+
+			if(left>right)
+			{
+				break;
+			}
+			for(int i=right;i>=left;i--)
+			{
+				System.out.print(matrix[bottom][i]+" ");
+			}
+			bottom--;
+
+			if(top>bottom)
+			{
+				break;
+			}
+			for(int i=bottom;i>=top;i--)
+			{
+				System.out.print(matrix[i][left]+" ");
+			}
+			left++;
+		}
+
+	}
+}
+
+
+Anonymous Array
+=================
+Sometimes we will declare an array without name such type of nameless array is called anonymous array.
+
+The main objective of anonymous array is just for instance use.
+
+We can declare anonymous array as follow.
+
+ex:
+	new int[]{10,20,30};
+	new int[][]{{10,20,30},{40,50,60}};
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		//caller method
+		sum(new int[]{10,20,30});
+	}
+	// callie method 
+	public static void sum(int[] arr)
+	{
+		int sum=0;
+
+		for(int i:arr)
+		{
+			sum+=i;
+		}
+
+		System.out.println(sum);
+	}
+}
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		//caller method
+		System.out.println(sum(new int[]{10,20,30,40}));
+	}
+	// callie method 
+	public static int sum(int[] arr)
+	{
+		int sum=0;
+
+		for(int i:arr)
+		{
+			sum+=i;
+		}
+
+		return sum;
+	}
+}
+
+OOPS
+=====
+OOPS stands for Object Oriented Programming System/Structure.
+
+The main purpose of OOPS is to deal with real world entities by using programming language.
+
+We have following list of OOPS features.
+
+1) class 
+
+2) object 
+
+3) Abstraction 
+
+4) Encapsulation 
+
+5) Inheritance 
+
+6) Polymorphism
+	
+A technology said to be object oriented if it supports above features.
+
+
+class 
+=====
+A class is a blue print of an object.
+
+A class is a collection of variables and methods.
+
+A class is a logical entity.
+
+We can declare a class as follow.
+
+syntax:
+	optional 
+	|
+	modifier class class_name <extends> Parent_classname 
+				  <implements> Interface_name
+	{
+		-
+		- // variables and methods 
+		-
+	}
+
+A class will accept following modifiers.
+ex:
+	default
+	public
+	final
+	abstract 
+
+Realtime example
+----------------
+To constructor a building we required a Design/blue print and that blue print consider as class.
+
+
+
+Q) What is the difference between default class and public class?
+
+default class
+------------
+If we declare any class a default then we can access that class within the package.
+ex:
+	class A 
+	{
+		-
+		- // variables and methods 
+		-
+	}
+
+
+public class
+------------
+If we declare any class as public then we can access that class within the package and outside of the package.
+ex:
+	public class A
+	{
+		-
+		- // variables and methods 
+		-
+	}
+
+final class
+============
+If we declare any class as final then creating child class is not possible.
+ex:
+	final class A 
+	{
+		
+	}
+	class B extends A  --> invalid 
+	{
+
+	}
+
+Abstract class
+==============
+If we declare any class as abstract then creating object for that class is not possible.
+ex:
+	abstract class A 
+	{
+	
+	}
+	A a=new A(); ---> invalid 
+
+object
+=======
+It is a outcome of a blue print.
+
+It is a instance of a class.
+
+Here instance means allocating memory for our data members.
+
+It is a physical entity.
+
+It is a collection of properties and behaviours.
+
+Realtime Example
+----------------
+				Dog (object)
+				|
+		----------------------------------------
+		|					|
+	properties					behaviours 
+	
+	> color						> barking 
+	> height					> running
+	> Breed						> eating
+	> weight					> sleeping
+	and etc.					and etc.
+
+Memory space will be created when we create an object.
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

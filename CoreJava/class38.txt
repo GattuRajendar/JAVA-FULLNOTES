@@ -1,0 +1,399 @@
+Q) Write a java program to display the string as a given format below?
+
+input:
+	str = This is Java class
+	remove = is 
+output:
+	Th  Java class
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="This is Java class";
+		String remove="is";
+
+		str=str.replaceAll(remove,"");
+
+		System.out.println(str);
+	}
+}
+
+Q) Write a java program to perform sum of two strings?
+
+input:
+	ihub12
+	talent23
+output:
+	ihubtalent35
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str1="ihub12";
+		String str2="talent23";
+		
+		String word1=str1.replaceAll("[^A-Za-z]","");
+		int num1=Integer.parseInt(str1.replaceAll("[^0-9]",""));
+
+		String word2=str2.replaceAll("[^A-Za-z]","");
+		int num2=Integer.parseInt(str2.replaceAll("[^0-9]",""));
+
+		String word=word1+word2;
+		int num=num1+num2;
+		
+		System.out.println(word+num);
+	}
+}
+
+Q) Write a java program to perform right rotation of a given string?
+
+Input:
+	str = ihubtalent 
+	count = 2
+	
+output:
+	ubtalentih
+
+ex:
+	
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="ihubtalent"; 
+		int count=2;
+
+		String first=str.substring(count,str.length());
+		String second=str.substring(0,count);
+		
+		System.out.println(first+second);
+	}
+}
+
+
+Q) Write a java program to display duplicate and unique characters from given string?
+
+input:
+	google
+
+output:
+	Duplicate characters : og  
+	Unique characters : gole 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="google";
+
+		String uniques="";
+		String duplicates="";
+
+		for(int i=0;i<str.length();i++)
+		{
+			String s=Character.toString(str.charAt(i));
+			if(uniques.contains(s))
+			{
+				if(!duplicates.contains(s))
+				{
+					duplicates+=s;
+					continue;
+				}
+			}
+			uniques+=s;
+		}
+		System.out.println("Duplicate characters :"+duplicates);
+		System.out.println("Unique characters :"+uniques);
+	}
+}
+
+
+Q) Write a java program to convert a given string in a below format?
+
+input:
+	A1B2C3D4
+
+output:
+	ABBCCCDDDD
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="A1B2C3D4";
+
+		for(int i=0;i<str.length();i++)
+		{
+			if(Character.isAlphabetic(str.charAt(i)))
+			{
+				System.out.print(str.charAt(i));
+			}
+			else
+			{
+				int j=Character.getNumericValue(str.charAt(i));
+				for(int k=1;k<j;k++)
+				{
+					System.out.print(str.charAt(i-1));
+				}
+			}
+		}
+
+	}
+}
+
+
+Q) Write a java program to display given string is anagram or not?
+
+input:
+	silent 
+	listen 
+
+output:
+	It is a anagram string 
+
+ex:
+--
+import java.util.Arrays;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str1="silent";
+		String str2="listen";
+
+		//convert to char array
+		char[] carr1=str1.toCharArray();
+		char[] carr2=str2.toCharArray();
+
+		//sorting
+		Arrays.sort(carr1); // e i l n s t 
+		Arrays.sort(carr2); // e i l n s t 
+
+		boolean flag=true;
+		for(int i=0;i<carr1.length && i<carr2.length;i++)
+		{
+			if(carr1[i]!=carr2[i])
+			{
+				flag=false;
+				break;
+			}
+		}
+		if(flag==true)
+			System.out.println("It is a anagram string");
+		else
+			System.out.println("It is not a anagram string");
+	}
+}
+
+
+Q) Write a java program to display the string in a given format?
+
+input:
+	XYZ
+
+output:
+	XY
+	XZ
+	YX
+	YZ
+	ZX
+	ZY
+
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="XYZ";
+
+		char[] carr=str.toCharArray();  
+		
+		for(int i=0;i<carr.length;i++)
+		{
+			for(int j=0;j<carr.length;j++)
+			{
+				if(i!=j)
+				{
+					System.out.println(carr[i]+""+carr[j]);
+				}
+			}
+		}
+
+	}
+}
+
+Q) Write a java program to display permutation of a given string ?
+
+input:
+	ABC
+
+output:
+	ABC
+	ACB 
+	BAC
+	BCA
+	CBA
+	CAB 	
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="ABC";
+		permutation(str.toCharArray(),0);
+	}
+	public static void  permutation(char[] arr,int fi) 
+	{
+		if(fi==arr.length-1)
+		{
+			System.out.println(arr);
+			return;
+		}
+
+		for(int i=fi;i<arr.length;i++)
+		{
+				swap(arr,fi,i);
+				permutation(arr,fi+1);
+				swap(arr,fi,i);
+		}
+	}
+	public static void swap(char[] arr,int fi,int i)
+	{
+		char temp=arr[fi];
+		arr[fi]=arr[i];
+		arr[i]=temp;
+	}
+}
+
+
+Interview Questions
+====================
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+
+Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+Total amount you can rob = 1 + 3 = 4.
+Example 2:
+
+Input: nums = [2,7,9,3,1]
+Output: 12
+Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
+Total amount you can rob = 2 + 9 + 1 = 12.
+
+ex:
+---
+class Solution 
+{
+    public static void main(String[] args)
+    {
+		int[] nums={2,7,9,3,1};
+        Solution s=new Solution();
+		System.out.println(s.rob(nums));
+    }
+    public int rob(int[] nums) 
+    {
+		int sum=0;
+        for(int i=0;i<nums.length;i++)
+		{
+			if(i%2==0)
+			{
+				sum+=nums[i];
+			}
+		}
+
+		return sum;
+    }
+}
+
+
+Assignment
+===========
+Q) Write a java program to display most repeating character in a given string?
+
+Input:
+	ihubtalentinstitute
+
+output:
+	t repeataing for 5 times 
+
+
+
+Q) Write a java program to display the strings starts with uppercase letter?
+
+Input:
+	This is Java class For student
+
+output:
+	This  Java  For 
+
+
+
+Q) Write a java program to display the palindrome strings?
+
+input:
+	racar is madam for class
+
+output:
+	racar  madam 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

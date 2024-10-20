@@ -1,0 +1,540 @@
+Q) Write a java program to display range of byte datatype?
+
+byte : -128 to 127 
+
+ex:
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Byte.MIN_VALUE);
+		System.out.println(Byte.MAX_VALUE);
+	}
+}
+
+
+Q) Write a java program to display range of short datatype?
+
+short : -32768 to 32767 
+
+ex:
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Short.MIN_VALUE);
+		System.out.println(Short.MAX_VALUE);
+	}
+}
+
+Q) Write a java program to display range of int datatype?
+
+int : -2147483648 to 2147483647 
+
+ex:
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Integer.MIN_VALUE);
+		System.out.println(Integer.MAX_VALUE);
+	}
+}
+
+
+Identifiers
+============
+A name in java is called identifier.
+
+It can be variable name, method name , class name or label name.
+
+ex:
+	class  Test 
+	{
+		public static void main(String[] args)
+		{
+			int x=10;
+
+			System.out.println(x); 	
+		}
+	}
+
+	Here Test, main, args and x are identifiers.
+
+
+Rules to declare an identifiers
+------------------------------
+Rule1:
+-----
+	Identifier will accept following characters.
+	ex:
+		A-Z
+		a-z
+		0-9
+		_
+		$
+
+Rule2:
+-----
+	If we take other characters then we will get compile time error.
+	ex:
+		int  emp#id; //invalid 
+		int  emp_id; //valid 
+		int  emp$al; //valid 
+
+Rule3:
+------
+	Identifier must and should starts with alphabet,underscore or dollar symbol but not 
+	with digits.
+	ex:	
+		int   _abcd; //valid 
+		int   $=20; //valid  
+		int   a1234; //valid 
+		int   1abcd; //invalid 
+		
+Rule4:
+------
+	Every identifier is a case sensitive.
+	ex:
+		int number;
+		int NUMBER;
+		int NumBer;
+
+Rule5:
+------
+	We can't take reserved words as an identifier name.
+	ex:
+		int  if; //invalid 
+		int  else; //invalid 
+		int  do; //invalid 
+		and etc.
+
+Rule6:
+-----
+	There is no length limit for an identifier but it is not recommanded to take more 
+	then 15 characters.
+
+
+Reserved Words
+===============
+There are some identifiers which are reserved to associate some functionality of meaning such type of identifiers are called reserved words.
+
+Java supports 53 reserved words.
+
+In java, reversed words are divided into two types.
+
+Diagram: class10.1
+
+
+Used keywords with respect to class
+--------------------------------
+package
+interface
+import
+class
+enum
+extends
+implements 
+
+Used keyword with respect to object
+-------------------------
+this
+super
+new 
+instanceof
+
+Used keywords with respect to datatype
+----------------------------------
+byte
+short
+int
+long
+float
+double
+boolean
+char
+
+Used keywords with respect to modifiers
+----------------------------
+default
+public
+private
+protected
+final
+abstract
+static
+strictfp
+synchronized
+transient
+volatile
+native
+
+Used keywords with respect to returntype
+------------------------
+void 
+
+Used keywords with respect to flow control
+-------------------------------
+if
+else
+switch
+case
+do
+while
+for
+break
+continue
+
+Used keywords with respect to exception handling
+-----------------------------------
+try
+catch
+finally
+throw
+throws
+assert 
+
+
+
+
+
+
+Q) Is Java purely object oriented or not?
+
+No, java will not consider as purely object oriented programming language because java does not 
+support many OOPS concepts like multiple inheritance, operator overloading and more ever we depends upon primitive datatypes which are non-objects.
+
+
+	
+Types of variables
+==================
+A name which is given to a memory location is called variable.
+
+The purpose of variable is used to store the data.
+
+In java, we have two types of variables.
+
+1) Primitive variables 
+-----------------------
+	It is used to represent primitive values.
+
+
+2) Reference variables 
+----------------------
+	It is used to represent object reference.
+	ex:
+		Student s=new Student();
+			  |
+			operator 
+
+Based on the position and execution these variables are divided into three types.
+
+1) Instance variable / Non-static variable 
+
+2) Static variable  / Global variable 
+
+3) Local variable  / Temperory variable / Automatic variable
+
+
+1) Instance variable
+---------------------
+A value of a variable which is varied(changes) from object to object is called instance variable.
+
+Instance variable will be created at the time of object creation and it will destroy at the time of object destruction.Hence scope of instance variable is same as scope of an object.
+
+Instance variables will store in heap area as a part of an object.
+
+Instance variable must and should declare immediately after the class but not inside methods,blocks and constructors.
+
+Instance variable we can access directly instance area but we can't access directly from static area.
+
+To access instance variable from static area we need to create object reference.
+
+ex:
+---
+class Test
+{
+	//instance variable
+	int i=10;	
+
+	public static void main(String[] args)
+	{
+		System.out.println(i);//C.T.E 	
+	}
+}
+
+ex:
+---
+class Test
+{
+	//instance variable
+	int i=10;	
+
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		System.out.println(t.i);// 10	
+	}
+}
+
+Note:
+-----
+If we won't initialize any value to instance variable then JVM will initialized default values.
+
+ex:
+---
+class Test
+{
+	//instance variable
+	boolean b;	
+
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		System.out.println(t.b);//  false
+	}
+}
+
+ex:
+---
+class Test
+{
+	//instance variable
+	int i=10;	
+
+	public static void main(String[] args)
+	{
+		Test t1=new Test();
+		Test t2=new Test();
+
+		System.out.println(t1.i);//10
+		System.out.println(t2.i);//10
+
+		t1.i=100;
+		System.out.println(t1.i);//100
+		System.out.println(t2.i);//10
+
+	}
+}
+
+ex:
+---
+class Test
+{	
+
+	public static void main(String[] args)
+	{
+		//calling
+		Test t=new Test();
+		t.m1();
+	}
+
+	//non-static method 
+	public void m1()
+	{
+		System.out.println("instance-methods");
+	}
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

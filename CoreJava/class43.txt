@@ -1,0 +1,604 @@
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("one");
+		al.add("two");
+		al.add("three");
+
+		for(int i=0;i<al.size();i++)
+		{
+			String s=al.get(i);
+			System.out.println(s);
+		}
+		
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("one");
+		al.add("two");
+		al.add("three");
+		System.out.println(al.isEmpty());//false
+		System.out.println(al);//[one,two,three]
+
+		al.add(1,"gogo");
+		System.out.println(al);//[one,gogo,two,three]
+
+		System.out.println(al.contains("gogo"));//true 
+		
+		al.remove("gogo");
+		System.out.println(al);//[one,two,three]
+		
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("one");
+		al.add("two");
+		al.add("three");
+		System.out.println(al);//[one,two,three]
+
+		al.clear();
+		System.out.println(al);//[]
+	}
+}
+
+Note:
+----
+	If our frequent operation is a retrieval operation then ArrayList is a best choice.
+
+
+LinkedList 
+===========
+The underlying data structure is doubly linkedlist.
+
+Duplicate objects are allowed.
+
+Insertion order is preserved.
+
+Hetrogeneous objects are allowed.
+
+Null insertion is possible.
+
+It implements Serializable, Cloneable and Deque interface.
+
+LinkedList contains following methods.
+ex:
+	public E getFirst();
+  	public E getLast();
+  	public E removeFirst();
+  	public E removeLast();
+  	public void addFirst(E);
+  	public void addLast(E);
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList ll=new LinkedList();
+		ll.add("one");
+		ll.add("two");
+		ll.add("three");
+		System.out.println(ll);//[one,two,three]
+		ll.add("one");
+		System.out.println(ll);//[one,two,three,one]
+		ll.add(10);
+		System.out.println(ll);//[one,two,three,one,10]
+		ll.add(null);
+		System.out.println(ll);//[one,two,three,one,10,null]
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> ll=new LinkedList<String>();
+		ll.add("one");
+		ll.add("two");
+		ll.add("three");
+		System.out.println(ll);//[one,two,three]
+		ll.add("one");
+		System.out.println(ll);//[one,two,three,one]
+		ll.add(null);
+		System.out.println(ll);//[one,two,three,one,null]
+	}
+}
+
+ex:
+----
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> ll=new LinkedList<String>();
+		ll.add("one");
+		ll.add("two");
+		ll.add("three");
+		System.out.println(ll);//[one,two,three]
+		
+		ll.addFirst("gogo");
+		ll.addLast("jojo");
+		System.out.println(ll);//[gogo,one,two,three,jojo]
+
+		System.out.println(ll.getFirst());//gogo
+		System.out.println(ll.getLast());//jojo
+
+		ll.removeFirst();
+		ll.removeLast();
+		System.out.println(ll);//[one,two,three]
+	}
+}
+
+ex:
+----
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> ll1=new LinkedList<String>();
+		ll1.add("one");
+		ll1.add("two");
+		ll1.add("three");
+		System.out.println(ll1);//[one,two,three]
+		
+		LinkedList<String> ll2=new LinkedList<String>();
+		ll2.add("raja");
+		System.out.println(ll2);//[raja]
+
+		ll2.addAll(ll1);
+		System.out.println(ll2);//[raja,one,two,three]
+
+		System.out.println(ll2.containsAll(ll1));//true 
+
+		ll2.removeAll(ll1);
+		System.out.println(ll2);//[raja]
+	}
+}
+
+ex:
+--
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		LinkedList<String> javaCourse=new LinkedList<String>();
+		javaCourse.add("java");
+		javaCourse.add("springboot");
+		javaCourse.add("html");
+		javaCourse.add("css");
+		javaCourse.add("javascript");
+		javaCourse.add("reactjs");
+		System.out.println(javaCourse);//[java,springboot,html,css,javascript,reactjs]
+
+		LinkedList<String> pythonCourse=new LinkedList<String>();
+		pythonCourse.add("python");
+		pythonCourse.add("django");
+		pythonCourse.add("html");
+		pythonCourse.add("css");
+		pythonCourse.add("javascript");
+		pythonCourse.add("angularjs");
+		System.out.println(pythonCourse);//[python,django,html,css,javascript,angularjs]
+
+		javaCourse.retainAll(pythonCourse);
+
+		System.out.println(javaCourse);//[html, css, javascript]
+	}
+}
+
+Note
+---
+If our frequent operation is adding and removing in the middle then LinkedList is a best choice.
+
+
+Vector
+=========
+The underlying data structure is resizable array or growable array.
+
+Duplicate objects are allowed.
+
+Insertion order is preserved.
+
+Hetrogeneous objects are allowed.
+
+Null insertion is possible.
+
+Methods present in Vector are synchronized.Hence we can achieve thread safety.
+
+Vector contains following methods.
+
+ex:
+	addElement()
+	removeElementAt()
+	removeAllElements()
+	firstElement()
+	lastElement()
+	and etc.
+
+ex:
+----
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Vector<Integer> v=new Vector<Integer>();
+		System.out.println(v.capacity());//10
+
+		for(int i=1;i<=10;i++)
+		{
+			v.addElement(i);
+		}
+		System.out.println(v);//[1,2,3,4,5,6,7,8,9,10]
+
+		System.out.println(v.firstElement());//1
+		System.out.println(v.lastElement());//10
+
+		v.removeElementAt(5);
+		System.out.println(v);//[1, 2, 3, 4, 5, 7, 8, 9, 10]
+
+		v.removeAllElements();
+		System.out.println(v);//[]
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Vector<Integer> v=new Vector<Integer>();
+		System.out.println(v.capacity());//10
+
+		for(int i=1;i<=15;i++)
+		{
+			v.addElement(i);
+		}
+		System.out.println(v.capacity());//20
+		System.out.println(v);//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+		System.out.println(v.firstElement());//1
+		System.out.println(v.lastElement());//10
+
+		v.removeElementAt(5);
+		System.out.println(v);//[1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+		v.removeAllElements();
+		System.out.println(v);//[]
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Vector<Integer> v=new Vector<Integer>();
+
+		for(int i=1;i<=10;i++)
+		{
+			v.add(i);
+		}
+		System.out.println(v);//[1,2,3,4,5,6,7,8,9,10]
+
+		System.out.println(v.get(0));//1
+		System.out.println(v.get(v.size()-1));//10
+
+		v.remove(5);
+		System.out.println(v);//[1, 2, 3, 4, 5, 7, 8, 9, 10]
+
+		v.clear();
+		System.out.println(v);//[]
+	}
+}
+
+Stack
+========
+It is a child class of Vector class.
+
+If we depends upon Last In First Out order then we need to use Stack.
+
+constructor
+---------
+	Stack s=new Stack();
+
+Methods
+-------
+1) push(Object o)
+---------------
+	It is used to push the element in stack.
+
+2) pop() 
+--------
+	It is used to remove the element from stack.
+
+3) peek() 
+---------
+	It will return toppest element of a stack.
+
+4) isEmpty() 
+----------
+	It will check stack is empty or not.
+
+5) Search(Object o)
+---------------
+	It will return offset value if element is found otherwise it will return -1.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Stack<String> s=new Stack<String>();
+		s.push("A");
+		s.push("B");
+		s.push("C");
+		System.out.println(s);//[A,B,C]
+
+		s.pop();
+		System.out.println(s);//[A,B]
+
+		System.out.println(s.peek());//B 
+
+		System.out.println(s.isEmpty());//false 
+
+		System.out.println(s.search("Z"));//-1
+		System.out.println(s.search("A"));// 2
+	}	
+}
+
+Q) Write a java program to display given string is balanced or not?
+
+input:
+	[{()}]
+
+output:
+	It is a balanced string 
+
+ex:
+
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="[{()}]";
+		if(isBalanced(str.toCharArray()))
+			System.out.println("It is a balanced string");
+		else
+			System.out.println("It is not a balanced string");
+	
+	}	
+	public static boolean  isBalanced(char[] carr)
+	{
+		Stack<Character> stack=new Stack<Character>();
+		for(char ch:carr)
+		{
+			if(ch=='[' || ch=='{' || ch=='(')
+			{
+				stack.push(ch);
+			}
+			else if(ch==')' && !stack.isEmpty() && stack.peek()=='(')
+			{
+				stack.pop();
+			}
+			else if(ch=='}' && !stack.isEmpty() && stack.peek()=='{')
+			{
+				stack.pop();
+			}
+			else if(ch==']' && !stack.isEmpty() && stack.peek()=='[')
+			{
+				stack.pop();
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		return stack.isEmpty();
+	}
+}
+
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		List<String> list=new ArrayList();
+		list.add("cat");
+		list.add("boy");
+		list.add("apple");
+		list.add("dog");
+		System.out.println(list);//[cat, boy, apple, dog]
+
+		Collections.sort(list);
+		System.out.println(list);//[apple, boy, cat, dog]
+	}
+}
+
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		List<Integer> list=Arrays.asList(6,8,2,4,9);
+		System.out.println(list);
+
+		Collections.sort(list);
+		System.out.println(list);//[2, 4, 6, 8, 9]
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,528 @@
+Q) Write a java program to check given year is a leap year or not?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter the year :");
+		int year=sc.nextInt();
+
+		if((year%4==0) && ((year%400==0) || (year%100!=0)))  //((year%4==0) && (year%100!=0)||(year%400==0))
+			System.out.println("It is a leap year");
+		else
+			System.out.println("It is not a leap year");
+	}
+}
+
+
+iii) if else if ladder
+=====================
+It will execute the source code based on multiple conditions.
+
+syntax:
+-------
+	if(cond1)
+	{
+		- //code to be execute if cond1 is true 
+	}
+	else if(cond2)
+	{
+		- //code to be execute if cond2 is true 
+	}
+	else if(cond3)
+	{
+		- //code to be execute if cond3 is true 
+	}
+	else
+	{
+		- //code to be execute if all conditions are false	
+	}
+	
+ex:
+----
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the option :");
+		int option=sc.nextInt();
+
+		if(option==100)
+			System.out.println("It is police number");
+		else if(option==103)
+			System.out.println("It is enquiry number");
+		else if(option==108)
+			System.out.println("It is emergency number");
+		else
+			System.out.println("Invalid option");
+
+	}
+}
+
+Q) Write a java program to check given alphabet is a vowel or not?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the alphabet :");
+		char ch=sc.next().charAt(0);
+
+		if(ch=='a' || ch=='A')
+			System.out.println("It is a vowel");
+		else if(ch=='e' || ch=='E')
+			System.out.println("It is a vowel");
+		else if(ch=='i' || ch=='I')
+			System.out.println("It is a vowel");
+		else if(ch=='o' || ch=='O')
+			System.out.println("It is a vowel");
+		else if(ch=='u' || ch=='U')
+			System.out.println("It is a vowel");
+		else
+			System.out.println("It is not a vowel");
+	}
+}
+
+
+Q) Write a java program to check given alphabet is a uppercase letter, lowercase letter, digit or a special symbol?
+
+ex:
+---
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the alphabet :");
+		char ch=sc.next().charAt(0);
+		
+		if(ch>='A' && ch<='Z')
+			System.out.println("It is a uppercase letter");
+		else if(ch>='a' && ch<='z')
+			System.out.println("It is a lowercase letter");
+		else if(ch>='0' && ch<='9')
+			System.out.println("It is a digit");
+		else
+			System.out.println("It is a special symbol");
+	}
+}
+
+Interview Question (Seguro Soft)
+=================================
+Q) Write a program to calculate shipping cost based on user input. The program should 
+prompt users to enter the total weight of items (in kilograms) and the shipping destination
+(domestic or international). For domestic orders , the program should charge Rs.500 for 
+weights up to 5kg and Rs. 100 per additional kg. For international orders, it should charge Rs 1000 for weights upto 5 kg , Rs.200 per additional kg, and a Rs.500 subcharge for weights 
+exceed to 10g . print calculated shipping cost.
+
+ inputs:
+	Total weight of items: 11kg
+	Shipping destination : domestic 
+
+output:
+	1100
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the total weight of item :");
+		int weight=sc.nextInt(); //11
+
+		System.out.println("Enter the shipping address :");
+		String address=sc.next();//domestic
+
+		if(address.equals("domestic"))
+		{
+			if(weight<=5)
+				System.out.println("Shipping cost is :"+500);
+			else if(weight>5)
+		       System.out.println("Shipping cost is :"+ (500 + (weight-5) * 100));
+		}
+		else
+		{
+			if(weight<=5)
+				System.out.println("Shipping cost is :"+1000);
+			else if(weight>5 && weight<=10)
+			System.out.println("Shipping cost is :"+ (1000 + (weight-5) * 200));
+			
+			else if(weight>10)
+			System.out.println("Shipping cost is :"+ (1000 + (weight-5) * 200 + 500));
+		}
+	}
+}
+
+iv) nested if stmt
+===================
+If stmt contains another if stmt is called nested if stmt.
+
+syntax:
+	if(condition)
+	{
+		if(condition)
+		{
+			-
+			- //code to be execute
+			-
+		}
+	}
+		
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		if(5>2)
+		{
+			System.out.println("stmt2");
+			if(true)
+			{
+				System.out.println("stmt3");
+			}
+			System.out.println("stmt4");
+		}
+		System.out.println("stmt5");
+	}
+}
+o/p:
+stmt1
+stmt2
+stmt3
+stmt4
+stmt5
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		if(5>2)
+		{
+			System.out.println("stmt2");
+			if(false)
+			{
+				System.out.println("stmt3");
+			}
+			System.out.println("stmt4");
+		}
+		System.out.println("stmt5");
+	}
+}
+o/p:
+	stmt1
+	stmt2
+	stmt4
+	stmt5
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		if(5>20)
+		{
+			System.out.println("stmt2");
+			if(true)
+			{
+				System.out.println("stmt3");
+			}
+			System.out.println("stmt4");
+		}
+		System.out.println("stmt5");
+	}
+}
+o/p:
+	stmt1
+	stmt5
+
+
+Q) Write a java program to find out given number is +ve or -ve by using nested if stmt?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the number: ");
+		int n=sc.nextInt();
+
+		if(n!=0)
+		{
+			if(n>0)
+			{
+				System.out.println("It is a positive number");
+				System.exit(0);
+			}
+			System.out.println("It is a negative number");
+		}
+	}
+}
+
+
+2) Selection Statement
+=======================
+switch case
+------------
+It will execute the source code based on multiple conditions.
+
+It is similar to if else if ladder.
+
+syntax:
+------
+	switch(condition)
+	{
+		case val1: //code to be execute
+			   break stmt;
+
+		case val2: //code to be execute
+			   break stmt;	
+
+		-
+		default:  //code to be execute if all cases are false
+	}
+
+ex:
+----
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the option: ");
+		int option=sc.nextInt();
+
+		switch(option)
+		{
+			case 100: System.out.println("It is police number");
+					  break;
+			case 103: System.out.println("It is enquiry number");
+					  break;
+			case 108: System.out.println("It is emergency number");
+					  break;
+			default:  System.out.println("Invalid option");
+		}
+	}
+}
+
+Declaration of break statement is optional in switch case.If we won't declare break statement
+then from where our condition is satisfied from there all cases will be executed that 
+state is called fall through state of switch case.
+
+ex:
+---
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the option: ");
+		int option=sc.nextInt();
+
+		switch(option)
+		{
+			case 100: System.out.println("It is police number");
+					  //break;
+			case 103: System.out.println("It is enquiry number");
+					  //break;
+			case 108: System.out.println("It is emergency number");
+					  //break;
+			default:  System.out.println("Invalid option");
+		}
+	}
+}
+
+Q) Write a java program to check given alphabet is a vowel or consonent?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the alphabet : ");
+		char ch=sc.next().charAt(0);
+
+		switch(ch)
+		{
+			case 'a': System.out.println("It is a vowel"); break;
+			case 'e': System.out.println("It is a vowel"); break;
+			case 'i': System.out.println("It is a vowel"); break;
+			case 'o': System.out.println("It is a vowel"); break;
+			case 'u': System.out.println("It is a vowel"); break;
+			default:  System.out.println("It is a cosonent");
+		}
+	}
+}
+
+A switch case allowed byte,short,int ,char and String. If we take other datatype then we will get compile time error.
+
+ex:
+---
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the String: ");
+		String str=sc.next();
+
+		switch(str)
+		{
+			case "one": System.out.println("January"); break;
+			case "two": System.out.println("February"); break;
+			case "three": System.out.println("March"); break;
+			case "four": System.out.println("April"); break;
+			case "five": System.out.println("May"); break;
+			default:  System.out.println("coming soon...");
+		}
+	}
+}
+
+Assignment
+===========
+Q) Write a java program to accept six marks of a student then find out total, average and grade?
+
+i) if average is greater then equals to 70 then A grade.
+
+ii) if average is greater then equals to 50 then B grade.
+
+iii) if average is greater then equals to 35 then C grade.
+
+iv) if average is less then 35 then failed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

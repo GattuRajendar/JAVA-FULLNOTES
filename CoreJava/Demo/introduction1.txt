@@ -1,0 +1,119 @@
+Institute Name 	:  IHUB TALENT MANAGEMENT / QUALITY THOUGHT 
+
+Websites	:  www.ihubtalent.com /  www.qualitythought.in 
+
+Location	:  Ameerpet, Hyderbad.
+
+Trainer Name	:  Niyaz Sir
+
+Experience 	: 14 years of experience in development and training.
+
+Course Name	: Full stack Java Development Course + AWS 	
+
+Duration	: 4 Months 
+
+Mode		: Online/Offline 
+
+Project		: Employee Management System 
+
+Additional classes: aptitute classes and communication classes.	
+
+Recordings	: Free 
+
+Placement Team	: Placement officer 
+
+Batch No	: IH-JAVA-034		
+
+
+			
+			Full Stack Java Development Course 
+				(Full Stack Developer)
+					|
+	|------------------------------------------------------------------|
+Frontend Technologies						BackEnd Technologies
+(FrontEnd Developer)						(BackEnd Developer)
+
+> HTML5								> Core Java
+> CSS3								> Advanced Java
+> JavaScript								> JDBC
+> Bootstrap5								> Servlets
+> ReactJS 								> JSP 
+								> Oracle Database 
+									> SQL
+									> PL/SQL 
+								> Frameworks
+									> Spring Boot
+									> Microservices
+
+Programming Language
+====================
+Diagram: introduction1.1
+
+A language which is used to communicate between user and computer is called programming language.
+
+Programming language acts like a mediator or interface between user and computer.
+
+
+Java
+====
+Object oriented programming language.
+Platform independent programming language.
+Case sensitive programming.
+Strongly typed checking language.
+High level language.
+Open source programming language.
+
+1995 --> James Gosling --> Sun Microsystem ---> Oracle Corporation  
+java software --> JDK software 
+
+C
+===
+Procedure oriented programming language.
+Platform dependent programming language.
+Case sensitive programming language.
+Loosely typed checking language.
+Middle level language (LOW + HIGH)
+
+
+Interview Question
+===================
+Q) What is java ?
+
+Java is a object oriented, platform independent, case sensitive, strongly typed checking,
+high level, open source programming language developed by James Gosling in the year of 1995.
+
+or
+
+Java is a versatile programming language which is used to develop various types of applications like distributed application, enterprise application, N-tier application, ERP application and etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

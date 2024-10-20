@@ -1,0 +1,214 @@
+Java
+=====
+Version			:	Java 8 
+
+JDK			:	JDK 1.8 
+
+Creator			:	James Gosling 
+
+Vendor			:	Oracle Corporation 
+
+Open Source		:	Open Source 
+
+website			:	www.oracle.com/in/java
+
+Tutorials		:	www.javatpoint.com 
+				www.javaus.com 
+				www.geeksforgeeks.com 
+				www.dzone.com
+				www.tutorialspoint.com
+				and etc.
+
+Download		:
+
+https://drive.google.com/file/d/16fr2McV_Bex0NYlOdcVfC4k2gwUUNqzq/view?usp=drive_link
+
+
+Steps to setup environment variables
+=====================================
+step1:
+------
+	Make sure JDK 1.8 installed successfully.
+
+step2:
+-----
+	Copy "lib" directory from java_home folder.
+	ex:
+		C:\Program Files\Java\jdk1.8.0_181\lib
+
+step3:
+-----
+	Paste lib directory in environmental variables.
+	ex:
+		right click to myPC --> properties --> Advanced system setttings -->
+		environmental variables --> 
+
+		user variables : --> click to new button -->
+		
+		variable name :  CLASSPATH
+		variable value : C:\Program Files\Java\jdk1.8.0_181\lib; ---> ok.
+
+		system variables : ---> click to new button -->
+	
+		variable name :  path 
+		variable value : C:\Program Files\Java\jdk1.8.0_181\bin; ---> ok --> ok --> ok.
+
+step4:
+-----
+	Check the environmental setup done perfectly or not.
+	ex:
+		cmd> javap
+		cmd> java -version 
+
+
+Steps to develop first java application
+====================================
+step1:
+------
+	Make sure JDK 1.8 installed successfully.
+
+step2:
+------
+	Make sure environmental setup done perfectly.
+
+step3:
+------
+	create a "javaprog" folder in 'E' drive.
+
+step4:
+------
+	Open the notepad and develop Hello World program.
+	ex:
+		class Test
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("Hello World");
+			}
+		}
+step5:
+-----
+	Save above program with same name as class name inside "javaprog" folder.
+
+
+step6:
+-----
+	Open the command prompt from "javaprog" location.
+
+step7:
+------
+	Compile above program by using below command.
+	ex:
+		javac   Test.java 
+			   |
+			filename 
+
+step8:
+-----
+	Run above program by using below command.
+	ex:
+		java   Test 
+			|
+			classname 
+
+Note:
+-----
+	.java file ---> javac ---> .class file ---> JVM ---> output 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+

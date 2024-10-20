@@ -1,0 +1,257 @@
+Ways to practice the program
+============================
+
+Q) John and Jack both are best friends in a town.They are studing in a same class.One day while going to school they found one beggar and they decided to help him.John gave 100 rupees from his pocket to that poor guy and Jack gave 50 rupees from his pocket.Write a java console to display total contribution?
+
+
+
+approach1
+---------
+		//Local Variable
+class SumOfTwoNumbers 
+{
+	public static void main(String[] args) 
+	{
+		int a=100;
+		int b=50;
+		int c=a+b;
+		System.out.println("Total Contribution is ="+c);
+	}
+}
+
+
+approach2
+----------
+		//Non-Static Method
+class SumOfTwoNumbers 
+{
+	public static void main(String[] args) 
+	{
+		SumOfTwoNumbers sotn=new SumOfTwoNumbers();
+		sotn.sum();
+	}
+	//non-static method 
+	public void sum()
+	{
+		int a=100;
+		int b=50;
+		int c=a+b;
+		System.out.println("Total Contribution is ="+c);
+	}
+}
+
+approach3
+---------
+		//Static Method
+class SumOfTwoNumbers 
+{
+	public static void main(String[] args) 
+	{
+		sum();
+	}
+	//static method 
+	public static void sum()
+	{
+		int a=100;
+		int b=50;
+		int c=a+b;
+		System.out.println("Total Contribution is ="+c);
+	}
+}
+
+
+
+Q) Unberry and Colorberry are best friends.One day Colorberry and Unberry going to school for exam.
+Unberry told to Colorberry I donate 10 rupees to charity and i belive i will score good marks in the exam.Then Colorberry also decided to donate double then Unberry to secure good marks.Write a java program to display how much money Colorberry donated to charity?
+
+input:
+	10
+
+output:
+	20 
+
+approach1  :
+---------
+		//Local Varible
+class DonateApp
+{
+	public static void main(String[] args)
+	{
+		int a=10;
+		int b=a*2;
+		System.out.println("Colorberry donated = "+b);		
+	}
+}
+
+approach2   :
+---------
+		//Non-Static or Instance Method
+class DonateApp
+{
+	public static void main(String[] args)
+	{
+
+		DonateApp x = new DonateApp();
+
+		x.m();
+	}
+
+	public void m()
+	{
+		int a=10;
+		int b=a*2;
+		System.out.println("Colorberry donated = "+b);
+		
+	}
+
+}
+
+approach3   :
+---------
+
+		//Static Method
+class DonateAppSM
+{
+	public static void main(String[] args)
+	{
+
+		DonateAppSM x = new DonateAppSM();
+		
+		m();	//calling by Directly
+		x.m();	//calling by Object
+		DonateAppSM.m();	//calling by Class name
+	}
+
+	public static void m()
+	{
+		int a=10;
+		int b=a*2;
+		System.out.println("Colorberry donated = "+b);
+		
+	}
+
+}
+
+
+Java Source File Structure
+==========================
+case1:
+------
+	A java program can have multiple classes.
+
+case2:
+-----
+	If a java program contains multiple classes then we need to check which class 
+	contains main method and that class will treated as main class.
+	ex:
+		Test.java
+		----------
+		class A 
+		{
+			-
+		}
+		class Test
+		{
+			public static void main(String[] args)
+			{
+				-
+				-
+			}
+		}
+
+		Here we will get two .class files i.e A.class and Test.class.
+
+case3:
+-----
+		If a java program contains multiple classes with main method then 
+		we need to declare any one class as public and that public class treated 
+		as main class.
+		ex:
+			A.java
+			------
+			public class A 
+			{
+				public static void main(String[] args)
+				{
+					System.out.println("A-class");
+				}
+			}
+			class B 
+			{
+				public static void main(String[] args)
+				{
+					System.out.println("B-class");
+				}
+			}
+			class C
+			{
+				public static void main(String[] args)
+				{
+					System.out.println("C-class");
+				}
+			}		
+		
+		Output:	
+		------
+			javac A.java
+			java A		-->A-class
+			java B		-->B-class
+			java C		-->C-class
+
+
+
+case4:
+-----
+		If a java program contains multiple classes with main method as public and that The Output Will Be Error(Any one must be public).
+
+
+	ex:-
+		public class A 
+			{
+				public static void main(String[] args)
+				{
+					System.out.println("A-class");
+				}
+			}
+		public	class B 
+			{
+				public static void main(String[] args)
+				{
+					System.out.println("B-class");
+				}
+			}
+
+	output:-
+	------	 javac A1.java
+
+		 class B1 is public, should be declared in a file named B1.java
+                public  class B1
+                        ^
+		1 error
+		
+		javac B1.java
+		B1.java:1: error: class A1 is public, should be declared in a file named A1.java
+		public class A1
+       			^
+		1 error
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

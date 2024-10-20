@@ -1,0 +1,644 @@
+TreeMap
+=======
+The underlying data structrue is RED BLACK TREE.
+
+Duplicate keys are not allowed but values can be duplicate.
+
+Insertion is not preserved because it will take sorting order of key.
+
+If we depends upon default natural sorting order then keys can be homegeneous.
+
+If we depends upon customized sorting order then keys can be hetrogeneous.
+
+Key can't be null but value can be null.
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		TreeMap<Integer,String> tm=new TreeMap<Integer,String>();
+		tm.put(1,"one");
+		tm.put(10,"ten");
+		tm.put(5,"five");
+		tm.put(7,"seven");
+		System.out.println(tm);//{1=one, 5=five, 7=seven, 10=ten}
+		tm.put(1,"gogo");
+		System.out.println(tm);//{1=gogo, 5=five, 7=seven, 10=ten}
+		tm.put(4,null);
+		System.out.println(tm);//{1=gogo, 4=null, 5=five, 7=seven, 10=ten}
+		//tm.put(null,"four");
+		//System.out.println(tm);//R.E NullPointerException 
+
+	}
+}
+
+Hashtable
+=========
+The underlying data structure is Hashtable.
+
+Duplicate keys are not allowed but values can be duplicate.
+
+Insertion order is not preserved because it will display descending order of a key.
+
+Hetrogeneous objects are allowed for both key and value.
+
+Null insertion is not possible for both key and value.
+
+ex:
+
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Hashtable<Integer,String> ht=new Hashtable<Integer,String>();
+		ht.put(1,"one");
+		ht.put(10,"ten");
+		ht.put(5,"five");
+		ht.put(7,"seven");
+		System.out.println(ht);//{10=ten, 7=seven, 5=five, 1=one}
+
+		//ht.put(null,"eight");
+		//System.out.println(ht);//R.E NullPointerException
+
+		//ht.put(8,null);
+		//System.out.println(ht);//R.E NullPointerException 
+	}
+}
+
+Interview Questions
+====================
+
+Q) Write a java program to display number of words present in a string ?
+
+input:
+	This is is java java class 
+
+output:
+	This=1 , is=2 , java=2 , class=1
+
+
+ex:
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="This is is java java class";
+		String[] sarr=str.split(" ");
+		
+		Map<String,Integer> map=new LinkedHashMap<String,Integer>();
+
+		for(String s:sarr)
+		{
+			if(map.get(s)!=null)
+			{
+				map.put(s,map.get(s)+1);
+			}
+			else
+			{
+				map.put(s,1);
+			}
+		}
+
+		System.out.println(map);
+	}
+}
+
+
+Q) Write a java program to display number of characters present in a string ?
+
+input:
+	java
+
+output:
+	j=1,a=2,v=1
+
+
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="java";
+		char[] carr=str.toCharArray();
+		
+		Map<Character,Integer> map=new LinkedHashMap<Character,Integer>();
+
+		for(char c:carr)
+		{
+			if(map.get(c)!=null)
+			{
+				map.put(c,map.get(c)+1);
+			}
+			else
+			{
+				map.put(c,1);
+			}
+		}
+
+		System.out.println(map);
+	}
+}
+
+
+ex:
+---
+import java.util.*;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Map<Integer,String> map=new LinkedHashMap<Integer,String>();
+		map.put(1,"one");
+		map.put(5,"five");
+		map.put(10,"ten");
+		
+		Set s=map.keySet();
+		System.out.println(s);//[1, 5, 10]
+
+		Collection c=map.values();
+		System.out.println(c);//[one, five, ten]
+
+		Set s1=map.entrySet();
+		System.out.println(s1);//[1=one, 5=five, 10=ten]
+	}
+}
+
+
+Q) Types of Data structures in java?
+
+	Diagram :class45.1
+
+
+
+
+Q) What is singleton class?
+
+A class which allows us to create only one object is called singleton.
+
+If we call any method using a class and that method returns same class object is called singleton class.
+
+We have following list of singleton classes.
+
+ex:
+	Calendar
+	LocalDate 
+	LocalTime 
+	and etc.
+
+To create a singleton class a class must have private constructor and one static method.
+
+ex:
+---
+class Singleton
+{
+	static Singleton singleton=null;
+
+	private Singleton()
+	{
+		
+	}
+	public static  Singleton  getInstance()
+	{
+		if(singleton==null)
+		{
+			singleton=new Singleton();
+		}
+
+		return singleton;
+	}
+}
+class Test
+{
+	public static void main(String[] args)
+	{
+		Singleton s1=Singleton.getInstance();
+		System.out.println(s1.hashCode());
+
+		Singleton s2=Singleton.getInstance();
+		System.out.println(s2.hashCode());
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Student
+{
+	private int studId;
+	private String studName;
+	private double studFee;
+	public Student(int studId,String studName,double studFee)
+	{
+		this.studId=studId;
+		this.studName=studName;
+		this.studFee=studFee;
+	}
+	public int getStudId()
+	{
+		return studId;
+	}
+	public String getStudName()
+	{
+		return studName;
+	}
+	public double getStudFee()
+	{
+		return studFee;
+	}
+}
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		List<Student> list=new ArrayList<Student>();
+		list.add(new Student(101,"raja",1000d));
+		list.add(new Student(102,"ravi",2000d));
+		list.add(new Student(103,"ramana",3000d));
+
+		Iterator itr=list.iterator();
+		while(itr.hasNext())
+		{
+			Student s=(Student)itr.next();
+			System.out.println(s.getStudId()+" "+s.getStudName()+" "+s.getStudFee());
+		}
+
+	}
+}
+
+
+
+
+Types of cursors in java
+=========================
+Cursor is used to read object one by one from Collections.
+
+We have three types of cursors.
+
+1) Enumeration 
+
+2) Iterator 
+
+3) ListIterator 
+
+
+1) Enumeration 
+--------------
+Using Enumeration we can read object one by one from legacy Collection objects.
+
+We can create Enumeration object as follow.
+
+ex:
+	Enumeration e=v.elements();
+
+Enumeration interface contains following two methods.
+ex:
+	public boolean hasMoreElements()
+	public Object nextElement()
+
+
+ex:
+---
+import java.util.*;
+class Test
+{
+	public static void main(String[] args)
+	{
+		Vector v=new Vector();
+		for(int i=1;i<=10;i++)
+		{
+			v.add(i);
+		}
+		System.out.println(v);//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+		Enumeration e=v.elements();
+		while(e.hasMoreElements())
+		{
+			Integer i=(Integer)e.nextElement();
+			System.out.println(i);
+		}
+	}
+}
+
+Limitations with Enumeration
+---------------------------
+> Using Enumeration we can read objects only from legacy Collection objects.Hence it is not a univeral cursor.
+
+> Using Enumeration we can perform read operation but not remove operation.
+
+> To overcome these limitations Sun Micro System introduced Iterator.
+
+
+2) Iterator
+-------------
+It is used to iterate the objects one by one from any Collection object.Hence it is a universal cursor.
+
+Using Iterator we can perform read and remove operation.
+
+We can create Iterator object as follow.
+ex:
+	Iterator itr=al.iterator();
+
+Iterator interface contains following three methods.
+ex:
+	public boolean hasNext()
+	public Object next()
+	public void remove()
+
+ex:
+---
+import java.util.*;
+class Test
+{
+	public static void main(String[] args)
+	{
+		ArrayList al=new ArrayList();
+		for(int i=1;i<=10;i++)
+		{
+			al.add(i);
+		}
+		System.out.println(al);//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+		Iterator itr=al.iterator();
+		while(itr.hasNext())
+		{
+			Integer i=(Integer)itr.next();
+			if(i%2==0)
+				System.out.println(i);
+			else
+				itr.remove();
+		}
+		System.out.println(al);//[2, 4, 6, 8, 10]
+	}
+}
+
+Limitation with Iterator
+------------------------
+Using Iterator or Enumeration we can read objects only in forward direction but not in backward direction.Hence they are not bi-directional cursors.
+
+Using Iterator we can perform read and remove operation but not adding and replacement of new objects.
+
+To overcome these limitations Sun Micro System introduced ListIterator.
+
+
+3) ListIterator
+----------------
+ListIterator is used to read objects one bye one from List Collection objects.
+
+Using ListItterator we can perform read , remove , adding and replacement of new objects.
+
+We can create ListIterator object as follow.
+
+ex:
+	ListIterator litr=al.listIterator();
+
+ListIterator interface contains following 9 methods.
+
+ex:
+	public boolean hasNext()
+	public Object next()
+	public boolean hasPrevious()
+	public Object prevoius()
+	public int previousIndex()
+	public int nextIndex()
+	public void set(Object o)
+	public void add(Object o)
+ex:
+---
+import java.util.*;
+class Test
+{
+	public static void main(String[] args)
+	{
+		ArrayList al=new ArrayList();
+		al.add("bala");
+		al.add("nag");
+		al.add("venki");
+		al.add("chiru");
+		System.out.println(al);//[bala,nag,venki,chiru]
+
+		ListIterator litr=al.listIterator();
+		while(litr.hasNext())
+		{
+			String s=(String)litr.next();
+			System.out.println(s);
+		}
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test
+{
+	public static void main(String[] args)
+	{
+		ArrayList al=new ArrayList();
+		al.add("bala");
+		al.add("nag");
+		al.add("venki");
+		al.add("chiru");
+		System.out.println(al);//[bala,nag,venki,chiru]
+
+		ListIterator litr=al.listIterator();
+		while(litr.hasNext())
+		{
+			String s=(String)litr.next();
+			if(s.equals("nag"))
+			{
+				litr.remove();
+			}
+		}
+		System.out.println(al);//[bala,venki,chiru]
+	}
+}
+
+
+ex:
+---
+import java.util.*;
+class Test
+{
+	public static void main(String[] args)
+	{
+		ArrayList al=new ArrayList();
+		al.add("bala");
+		al.add("nag");
+		al.add("venki");
+		al.add("chiru");
+		System.out.println(al);//[bala,nag,venki,chiru]
+
+		ListIterator litr=al.listIterator();
+		while(litr.hasNext())
+		{
+			String s=(String)litr.next();
+			if(s.equals("venki"))
+			{
+				litr.add("chaitanya");
+			}
+		}
+		System.out.println(al);//[bala,nag,venki,chaitanya,chiru]
+	}
+}
+
+ex:
+---
+import java.util.*;
+class Test
+{
+	public static void main(String[] args)
+	{
+		ArrayList al=new ArrayList();
+		al.add("bala");
+		al.add("nag");
+		al.add("venki");
+		al.add("chiru");
+		System.out.println(al);//[bala,nag,venki,chiru]
+
+		ListIterator litr=al.listIterator();
+		while(litr.hasNext())
+		{
+			String s=(String)litr.next();
+			if(s.equals("venki"))
+			{
+				litr.set("chaitanya");
+			}
+		}
+		System.out.println(al);//[bala,nag,chaitanya,chiru]
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

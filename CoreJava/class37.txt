@@ -1,0 +1,541 @@
+Types of objects in Java
+=========================
+We have two types of objects in Java.
+
+1) Immutable object 
+
+2) Mutable object 
+
+1) Immutable object 
+-------------------
+After object creation if we perform any changes then for every change a new object will be created such type of object is called immutable object.
+ex:
+	String and Wrapper classes
+
+
+2) Mutable object
+-----------------
+After object creation if we perform any changes then all the required changes will be done in a same object such type of object is called mutable object.
+ex:
+	StringBuffer and StringBuilder 
+
+String
+=======
+It is a collection of characters which is enclosed in a double quotation.
+
+It is a immutable object.
+
+case1:
+-------
+Once if we create a String object. We can't perform any changes then for every change a new object will be created such behaviour is called immutability of an object.
+
+Diagram: class37.1
+
+case2:
+------
+Difference between == and .equals() method?
+
+==
+---
+It is a equivality operator or comparision operator which always returns boolean value.
+
+It is used for reference comparision or address comparision.
+
+ex
+---
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String s1=new String("bhaskar");
+		String s2=new String("bhaskar");
+		System.out.println(s1==s2); //false 
+	}
+}
+
+
+.equals()
+----------
+It is a predefined method which is present in String class and it always returns boolean value.
+
+It is used for content comparision which is case sensitive.
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String s1=new String("bhaskar");
+		String s2=new String("bhaskar");
+		System.out.println(s1.equals(s2)); //true
+	}
+}
+
+case3:
+-----
+Once if we create a String object.Two objects will be created one is on heap and another is on 
+SCP(String Constant Pool) area.But 's' always points to heap area.
+
+Diagram: class37.2
+
+
+Object creation in SCP area is always optional.First JVM will check is there any object is created with same content or not.If it is created then JVM simply refers to that object.If it is not created then JVM will create a new object.Hence there is no chance of having duplicate objects in SCP Area.
+
+SCP area objects do not have any reference even though garbage collector can't access them.
+
+SCP area objects will destroy automatically when JVM shutdowns or terminated.
+
+Diagram: class37.3
+
+
+Interning of String object
+===========================
+With the help of heap object reference .If we need corresponding SCP object reference then we need to use intern() method.
+
+Diagram: class37.4
+
+String important methods
+========================
+
+Q) Write a java program find out length of a string?
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="bhaskar";
+		System.out.println(str.length());//7
+	}
+}
+
+
+Q) Write a java program to convert a given string to lower case ?
+
+ex:
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String email="INFO@IHUBTALENT.COM";
+		System.out.println(email.toLowerCase());//info@ihubtalent.com
+	}
+}
+
+Q)Write a java program to convert given string to upper case ?
+
+ex:
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="ihubtalent";
+		System.out.println(str.toUpperCase());//IHUBTALENT
+	}
+}
+
+Q) Write a java program to display characters from given a string?
+
+Input:
+	hello
+Output:
+	h
+	e 
+	l
+	l
+	o 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="hello";
+		
+		for(int i=0;i<str.length();i++)
+		{
+			char ch=str.charAt(i);
+			System.out.println(ch);
+		}
+	}
+}
+
+
+Q) Write a java program to display vowels present in a given string?
+
+input:
+	umbrella 
+
+Output:
+	u  e  a  
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="umbrella";
+		
+		for(int i=0;i<str.length();i++)
+		{
+			char ch=str.charAt(i);
+			if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u')
+			{
+				System.out.print(ch+" ");
+			}
+		}
+	}
+}
+
+
+Q) Write a java program to remove special characters from given string?
+
+Input:
+	I@hub$Ta_le*n#t
+
+Output:
+	IhubTalent 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="I@hub$Ta_le*n#t";
+		
+		str=str.replaceAll("[^A-Za-z0-9]","");
+
+		System.out.println(str);
+	}
+}
+
+
+
+Q) Write a java program to remove spaces from a given string?
+
+input:
+	I hub Tal ent 
+
+output:
+	IhubTalent 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="I hub Tal ent";
+		
+		str=str.replaceAll("\\s","");
+
+		System.out.println(str);
+	}
+}
+
+
+Q) Write a java program to display the string in a reverse order?
+
+input:
+	hello 
+
+output:
+	olleh 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="hello";
+		
+		char[] carr=str.toCharArray(); // h   e    l    l   o 
+
+		String rev="";
+
+		for(int i=carr.length-1;i>=0;i--)
+		{
+			rev+=carr[i];
+		}
+
+		System.out.println(rev);
+	}
+}
+
+
+Q) Write a java program to check given string is palindrome or not?
+
+input:
+	racar 
+
+output:
+	It is a palindrome string 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="racar";
+		
+		char[] carr=str.toCharArray(); // h   e    l    l   o 
+
+		String rev="";
+
+		for(int i=carr.length-1;i>=0;i--)
+		{
+			rev+=carr[i];
+		}
+
+		if(str.equals(rev))
+			System.out.println("It is a palindrome string");
+		else
+			System.out.println("It is not a palindrome string");
+	}
+}
+
+
+Q) Write a java program to display reverse of a sentence?
+
+Input:
+	This is java class
+
+output:
+	class java is This 
+
+ex:
+--
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="This is java class";
+		
+		String[] sarr=str.split(" ");// This      is       java      class 
+
+
+		for(int i=sarr.length-1;i>=0;i--)
+		{
+			System.out.print(sarr[i]+" ");
+		}
+	}
+}
+
+Q) Write a java program to display reverse of a word in a given string?
+
+input:
+	This is java class
+
+output:
+	sihT si avaj ssalc 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="This is java class";
+		
+		String[] sarr=str.split(" ");// This      is       java      class 
+
+		for(String s:sarr)
+		{
+			char[] carr=s.toCharArray(); // T   h    i    s 
+
+			for(int i=carr.length-1;i>=0;i--)
+			{
+				System.out.print(carr[i]);
+			}
+			//space
+			System.out.print(" ");
+		}
+	}
+}
+
+
+Q) Write a java program to return sub string from given string?
+
+input:
+	ihubtalent
+
+output:
+	talent 
+
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="ihubtalent";
+		
+		String result=str.substring(4);
+
+		System.out.println(result);
+	}
+}
+
+
+Q) Write a java program to return sub string from given string?
+
+input:
+	ihubtalent
+
+output:
+	tale
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str="ihubtalent";
+		
+		String result=str.substring(4,8);
+
+		System.out.println(result);
+	}
+}
+
+Q) Write a java program to insert a given word in a given index?
+
+input:
+	str = ihubtalent
+
+	word = for 
+
+	index = 4 
+
+outut:
+	ihubfortalent 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args)
+	{
+		String str ="ihubtalent";
+		String word ="for"; 
+		int index =4; 
+		
+		String word1=str.substring(0,index);//ihub 
+
+		String word2=str.substring(index,str.length());//talent
+		
+		String result=word1+word+word2;
+
+		System.out.println(result);
+	}
+}
+
+Assignment
+==========
+Q) Write a java program to split the string without using split() method?
+
+
+Q) Write a java program to display number of uppercase letters, lowercase letters, digits , words and spaces present in a given string?
+
+input:
+	This Is Java Class37
+
+output:
+	uppercase letters : 4 
+	lowercase letters : 11
+	digits		  : 2 
+	words		  : 4
+	spaces            : 3  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

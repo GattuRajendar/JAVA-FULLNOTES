@@ -1,0 +1,99 @@
+Internal Architecture of JVM
+============================
+Diagram: class7.1
+
+Java program contains java code instructions . Once if we compiled , java code instructions convert to byte code instructions in .class file.
+
+JVM will invoke one module called class loader/ sub system to load all the byte code instructions from .class file. The work of classloader is to check these byte code instructions are proper or not. If they are not proper then it will refuse the execution. I']ddddddr514:35 10-05-202414:35 10-05-202414:35 10-05-2024ef they are proper then it will allocate the memory.
+
+We have five types of memories.
+
+1) Method Area
+-------------
+Method area contains code of a class , code of a variable and code of a method.
+
+2) Heap 
+-------
+Our object creations will store in heap area.
+
+Note:
+-----
+Whenever JVM loads byte code instructions from .class file then it will create method area and heap area automatically.
+
+
+3) Java Stack 
+------------
+Java methods will store in method area.
+
+To execute those methods we required some memory.
+
+That memory will be allocated in java stack.
+
+
+4) PC Register 
+-------------
+It is a program counter register which is used to track the address of an instructions.
+
+
+5) Native Method Stack 
+------------------------
+Java methods will execute in method area.
+Similarly native methods will execute in native method stack.
+But we can't execute native methods directly. We required a program called Native method interface.
+
+Execution Engine
+---------------
+Execution engine contains interpreter and JIT compiler.
+
+Whenever JVM loads byte code instructions from .class file ,it will use interpreter and JIT compiler simultenously.
+
+Interpreter is used to execute our program line by line procedure.
+
+JIT compiler is used to increase the execution speed of our program.
+
+Later it will be handover to OS.
+
+
+Interview Questions
+===================
+
+Q) How many classloaders are there in java?
+
+We have three predefined classloaders in java.
+
+1)Bootstrap classloader : It loads rt.jar file. 
+
+2)Extension classloader : It loads all jars from ext folder.
+
+3)Application/System classloader : It loads .class file from classpath.
+
+
+Q) What is JIT compiler?
+
+JIT compiler is a part of a JVM which is used to increase the execution speed of our program.
+
+
+
+Q) How many memories are there in java?
+
+We have five memories in java.
+
+1) Method Area 
+2) Heap 
+3) Java Stack
+4) PC Register 
+5) Native Method Stack.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

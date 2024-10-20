@@ -1,0 +1,192 @@
+System.out.println()
+=====================
+It is a output statement in java.
+
+Whenever we want to display any data or userdefined statements then we need to use output stmt.
+
+syntax:
+	
+	    static variable 
+		|
+	System.out.println(); 
+	|		|
+	predefined 	predefined method 
+	final class 
+
+Diagram: class14.1
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println("stmt1");
+		System.out.print("stmt2");
+		System.out.printf("stmt3");
+	}
+}
+
+Ways to display the data in java
+----------------------------------
+1)
+	System.out.println("Hello World");
+
+2)
+	int a=10;
+	System.out.println(a);
+	System.out.println("The value is ="+a);
+
+3)
+	int a=10,b=20;
+	System.out.println(a+"\t"+b);
+	System.out.println(a+" and "+b);
+
+4) 
+	int i=1,j=2,k=3;
+	System.out.println(i+" "+j+" "+k);
+	
+
+Q) What is the difference between System.out.println() and System.err.println() ?
+
+System.out.println()
+----------------------
+It is used redirect our output to console.
+
+ex:
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Hello World");
+	}
+}
+
+System.err.println()
+---------------------
+It is used to redirect our output to console as well as in a physical file.
+	
+ex:
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.err.println("Hello World");
+	}
+}
+
+o/p:
+	javac  Test.java
+	java   Test 2>abc.txt 
+
+
+
+Fully Qualified Name
+=====================
+A fully qualified name means a  class or interface prefix with package name.
+
+Fully qualified name means we will declare class and interface along with package name.
+
+It is used to improve readability of our code.
+
+ex:
+---
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		java.util.Date d=new java.util.Date();	
+		System.out.println(d);	
+	}
+}
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		java.util.Date d=new java.util.Date();	
+
+		int h=d.getHours();
+		int m=d.getMinutes();	
+		int s=d.getSeconds();
+
+		System.out.println(h+" : "+m+" : "+s);
+	}
+}
+
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		java.util.Date date=new java.util.Date();	
+
+		int d=date.getDate();
+		int m=date.getMonth()+1;
+
+		date.setYear(2024);	
+		int y=date.getYear();
+
+		System.out.println(d+" / "+m+" / "+y);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

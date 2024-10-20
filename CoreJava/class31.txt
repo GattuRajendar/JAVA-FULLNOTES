@@ -1,0 +1,200 @@
+It is possible to create more then one object in a single class.
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Test t1=new Test();
+		Test t2=new Test();
+		Test t3=new Test();
+
+		System.out.println(t1.hashCode());
+		System.out.println(t2.hashCode());
+		System.out.println(t3.hashCode());
+
+		System.out.println(t1); // Test@Hexadecimalno
+		System.out.println(t2); // Test@Hexadecimalno
+		System.out.println(t3); // Test@Hexadecimalno
+	}
+}
+
+Q) What is hash code in java?
+
+For every object , JVM will create a unique identification number i.e hash code.
+
+In order to read the hash code of an object we need to use hashCode() method of Object class.
+
+Diagram: class31.1
+
+
+
+Q) What is toString() method?
+
+It is a method present in Object class.
+
+Whenever we are trying to display any object reference directly or indirectly toString() method will be executed.
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Test t1=new Test();
+		System.out.println(t1); //Test@Hexadecimal
+		System.out.println(t1.toString());//Test@Hexadecimal
+	}
+}
+
+
+Q) What is Object class?
+
+Object class present in java.lang package.
+
+It is a parent class for every java class.
+
+It contains following methods.
+
+ex:
+	cmd> javap   java.lang.Object 
+
+	toString() 
+	hashCode()
+	getClass()
+	wait()
+	notify()
+	notifyAll()
+	and etc.	
+
+
+Data Hiding
+===========
+Data hiding is used to provide security by hiding object data.
+
+Using private modifier we can implements data hiding concept.
+
+Data hiding is used to prevent unauthorized access of data.
+
+ex:
+---
+class Account
+{
+	private double balance=90000d;
+}
+class Student
+{
+	public static void main(String[] args)
+	{
+		Account account=new Account();
+		System.out.println(account.balance);
+	}
+}
+o/p:
+	 C.T.E : balance has private access in Account
+
+
+
+Abstraction
+============
+Hiding the internal implementation and highlight the set of services is called abstraction.
+
+Using Interfaces and Abstract classes we can implements abstraction.
+
+Abstraction is used to hide the data.
+
+Realtime Example
+----------------
+The best example of abstraction is GUI (Graphical User Interface) ATM machine where bank people will hide internal implementation and highlights the set of services like banking, withdrawl,deposit, mini statement and etc.
+
+The main advantages of abstraction are 
+
+1) It gives security because it will hide internal implementation from outsider.
+
+2) Enhacement becomes more easy because without effecting enduser they can perform any 
+   changes in our internal system.
+
+3) It provides flexibility to the enduser to use the system.
+
+4) It improves maintainability of an application.
+
+
+Encapsulation
+============
+The process of encapsulating or grouping variables and it's associate methods in a single
+entity is called encapsulation.
+
+Diagram: class31.2
+
+A class is said to be encapsulated class if it supports data hiding and abstraction.
+
+Encapsulation is used to protect the data.
+
+Realtime Exmaple
+---------------
+	A realtime example of encapsulation is Capsule. 
+
+In encapsulation for every variable we need to write setter and getter methods.
+
+Diagram: class31.3
+
+The main advantages of encapsulation are.
+
+1) It gives security.
+
+2) Enhancement becomes more easy.
+
+3) It provides flexibility to the enduser to use the system.
+
+4) It improves maintainability of an application.
+
+The main disadvantage of encapsulation is , it will increase the length of our code and 
+slow down the execution process.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
