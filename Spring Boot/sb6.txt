@@ -1,0 +1,311 @@
+customer micro service
+=======================
+To develop a micro service in a spring boot we need to follow layered architecture.
+
+Diagram: sb6.1
+
+
+Project Structure
+-------------------
+customer-service
+|
+|---src/main/java
+	|
+	|---com.ihub.www (base pkg)
+		|
+		|---CustomerServiceApplication.java
+	|
+	|---com.ihub.www.controller
+		|
+		|---CustomerController.java
+
+	|---com.ihub.www.service
+		|
+		|---CustomerService.java
+
+	|---com.ihub.www.repo
+		|
+		|---CustomerRepository.java (Interface)
+
+	|---com.ihub.www.model
+		|
+		|---Customer.java
+|
+|---src/main/resources
+	|
+	|---application.yml 
+|
+|---pom.xml 
+
+
+step1:
+------
+	Download and install project lombok.
+	ex:
+		https://projectlombok.org/download
+
+step2:
+-----
+	Open the command prompt and run lombok jar file.
+	ex:
+		cmd> java  -jar  lombok.jar
+
+step3:
+------
+	Create a "customer-service" project.
+	ex:
+		starters: 	
+				spring web 
+				spring data jpa 
+				lombok
+				mysql driver 
+
+step4:
+------
+	Create a "demo" schema inside mysql database and use the schema.
+	ex:
+		MySQL> show databases;
+
+		MYSQL> create schema demo;
+
+		MYSQL> use demo;
+
+step5:
+------
+	Create a Customer model class inside "com.kits.www.model" package.
+
+Customer.java
+-------------
+package com.kits.www.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer                   
+{
+	@Id                            
+	private int custId;
+	
+	@Column
+	private String custName;
+	
+	@Column
+	private String custAdd;
+}
+
+
+
+step6:
+------
+	Create a CustomerRepository interface inside "com.kits.www.repo" package.
+
+CustomerRepository.java
+----------------------
+package com.kits.www.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.kits.www.model.Customer;
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Integer>
+{
+
+}
+
+step7:
+-----
+	Create a CustomerController class inside "com.kits.www.controller" package.
+
+CustomerController.java
+----------------------
+package com.kits.www.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.kits.www.model.Customer;
+import com.kits.www.service.CustomerService;
+
+@RestController
+@RequestMapping("/customer")
+public class CustomerController {
+
+	@Autowired
+	CustomerService customerService;
+	
+	@PostMapping("/add")
+	public Customer addCustomer(@RequestBody Customer customer)
+	{
+		return customerService.addCustomer(customer);
+	}
+	
+	@GetMapping("/fetch")
+	public List<Customer> getAllCustomers()
+	{
+		return customerService.getAllCustomers();
+	}
+	
+	@GetMapping("/fetch/{custId}")
+	public Customer getCustomer(@PathVariable int custId)                
+	{
+		return customerService.getCustomer(custId);
+	}
+	
+	@PutMapping("/update")
+	public String updateCustomer(@RequestBody Customer customer)
+	{
+		return customerService.updateCustomer(customer);
+	}
+	
+	@DeleteMapping("/delete/{custId}")
+	public String deleteCustomer(@PathVariable int custId)
+	{
+		return customerService.deleteCustomer(custId);
+	}
+}
+
+
+
+step8:
+------
+	Create a CustomerService class inside "com.kits.www.service" package.
+
+CustomerService.java
+--------------------
+package com.kits.www.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.kits.www.model.Customer;
+import com.kits.www.repo.CustomerRepository;
+
+@Service
+public class CustomerService 
+{
+	@Autowired
+	CustomerRepository  customerRepository;
+	
+	public Customer addCustomer(Customer customer)
+	{
+		return customerRepository.save(customer);
+	}
+	
+	public List<Customer> getAllCustomers()
+	{
+		return customerRepository.findAll();
+	}
+	
+	public Customer getCustomer( int custId)
+	{
+		return customerRepository.findById(custId).get();
+	}
+	
+	public String updateCustomer(Customer customer) 
+	{
+		Customer cust=customerRepository.findById(customer.getCustId()).get(); 
+		cust.setCustName(customer.getCustName());
+		cust.setCustAdd(customer.getCustAdd());
+		customerRepository.save(cust);
+		
+		return "Record Updated";
+	}
+	
+	public String deleteCustomer(int custId)
+	{
+		Customer customer=customerRepository.findById(custId).get();
+		customerRepository.delete(customer);
+		return "Record Deleted";
+	}
+}
+
+
+step9:
+-----
+	Configure server port, application name, database properties and hibernate properties 
+	inside application.yml file.
+
+application.yml
+---------------
+server:
+  port: 9090
+  
+spring:
+  application:
+    name: CUSTOMER-SERVICE
+    
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true   
+
+
+step10:
+------
+	Run spring boot application and check by using below request url's.
+
+	Method					URL
+	-------					-----
+	POST					http://localhost:9090/customer/add
+						> body 
+							> raw
+							{	
+								"custId":101,
+								"custName":"Alan",
+								"custAdd":"Texas"
+							}
+	GET					http://localhost:9090/customer/fetch
+	GET					http://localhost:9090/customer/fetch/101
+	PUT					http://localhost:9090/customer/update		
+						> body 
+							> raw
+							{	
+								"custId":101,
+								"custName":"Jose",
+								"custAdd":"Chicago"
+							}	
+	DELETE					http://localhost:9090/customer/delete/101
+
+
+
+
+
+
+
+
+
+
+
+
+
+

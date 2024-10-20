@@ -1,0 +1,366 @@
+Exception Handling in Spring Boot
+==================================
+If we give/pass wrong request to our application then we will get exception.
+ex:
+	http://localhost:9090/customer/fetch/102
+
+Here 102 record is not available so immediately our controller will throw below exception.
+ex:
+	{
+   		"timestamp": "2024-06-28T02:40:52.640+00:00",
+    		"status": 500,
+    		"error": "Internal Server Error",
+    		"path": "/customer/fetch/102"
+	}
+
+Handling exceptions and errors in API's and sending the proper response to the client is good for enterprise applications.
+
+In Spring Boot exception handling can be performed by using following annotations.
+
+@ControllerAdvice
+-----------------
+The @ControllerAdvice is an annotation is used to handle the exceptions globally.
+
+@ExceptionHandler
+----------------- 
+The @ExceptionHandler is an annotation is used to handle specific exceptions and sending custom response to the client.
+
+
+Project Structure 
+-----------------
+customer-service
+|
+|---src/main/java
+	|
+	|---com.kits.www
+		|
+		|---CustomerServiceApplication.java
+	|
+	|---com.kits.www.controller
+		|
+		|---CustomerController.java
+	|
+	|---com.kits.www.service	
+		|
+		|---CustomerService.java
+
+	|---com.kits.www.repo
+		|
+		|---CustomerRepository.java
+
+	|---com.kits.www.model 
+		|
+		|---Customer.java
+	|
+	|---com.kits.www.exception
+		|
+		|---ErrorDetails.java	
+		|---ResourceNotFoundException.java
+		|---GlobalExceptionHandler.java
+
+|
+|---src/main/resources
+	|
+	|---application.yml 
+|
+|---pom.xml 
+
+step1:
+-----
+	Make sure customer-service project is ready.
+
+step2:
+-----
+	Create a "com.kits.www.exception" package inside "src/main/java".
+
+step3:
+-----
+	Create a ErrorDetails class inside "com.kits.www.exception" package.
+
+
+ErrorDetail.java
+----------------
+package com.kits.www.exception;
+
+import java.util.Date;
+
+public class ErrorDetails 
+{
+	private Date timestamp;
+	private String message;
+	private String details;
+	
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
+	}
+}
+
+step4:
+-----
+	Create ResourceNotFoundException class inside "com.kits.www.exception" package.
+
+ResourceNotFoundException.java
+-------------------------------
+package com.kits.www.exception;
+
+public class ResourceNotFoundException extends RuntimeException 
+{
+	public ResourceNotFoundException(String msg)
+	{
+		super(msg);
+	}
+}
+
+
+step5:
+------
+	Create a GlobalExceptionHandler class inside "com.kits.www.exception" package.
+
+GlobalExceptionHandler.java
+---------------------------
+package com.kits.www.exception;
+
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+
+@ControllerAdvice
+public class GlobalExceptionHandler 
+{
+
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException exception,WebRequest request)
+	{
+		ErrorDetails errorDetails=new ErrorDetails(new Date(),exception.getMessage(),request.getDescription(false));
+		
+		return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<?> handleException(Exception exception,WebRequest request)
+	{
+		ErrorDetails errorDetails=new ErrorDetails(new Date(),exception.getMessage(),request.getDescription(false));
+		
+		return new ResponseEntity<>(errorDetails,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}
+
+step6:
+-----
+	Now add ResourceNotFoundException to CustomerService.java file.
+
+CustomerService.java
+---------------------
+package com.kits.www.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kits.www.exception.ResourceNotFoundException;
+import com.kits.www.model.Customer;
+import com.kits.www.repo.CustomerRepository;
+
+@Service
+public class CustomerService 
+{
+	@Autowired
+	CustomerRepository  customerRepository;
+	
+	public Customer addCustomer(Customer customer)
+	{
+		return customerRepository.save(customer);
+	}
+	
+	public List<Customer> getAllCustomers()
+	{
+		return customerRepository.findAll();
+	}
+	
+	public Customer getCustomer( int custId)
+	{
+		return customerRepository.findById(custId).orElseThrow(()->new ResourceNotFoundException("Id Not Found"));
+	}
+	
+	public String updateCustomer(Customer customer) 
+	{
+		Customer cust=customerRepository.findById(customer.getCustId()).get(); 
+		cust.setCustName(customer.getCustName());
+		cust.setCustAdd(customer.getCustAdd());
+		customerRepository.save(cust);
+		
+		return "Record Updated";
+	}
+	
+	public String deleteCustomer(int custId)
+	{
+		Customer customer=customerRepository.findById(custId).orElseThrow(()->new ResourceNotFoundException("Id Not Found"));
+		customerRepository.delete(customer);
+		return "Record Deleted";
+	}
+}
+
+step7:
+-----
+	Relaunch the spring boot application 
+
+step8:
+----
+	Test the spring boot application by using below request url.
+	ex:
+		http://localhost:9090/customer/fetch/102
+
+Note:
+-----
+	Here exception will display in below format.
+	ex:
+		{
+    			"timestamp": "2024-06-28T03:08:34.856+00:00",
+    			"message": "Id Not Found",
+    			"details": "uri=/customer/fetch/102"
+		}
+
+
+
+What is API 
+===========
+API stands for Application Programming Interface.
+
+API is a mechanism that enables two software components to communicate with each other using set of rules and protocols.
+
+It acts like a interface between two software applications to exchange the data.
+
+Diagram: sb7.1
+
+We have four types of API's.
+
+1) public API 
+--------------
+	It is open and available for use by any outside developers.
+
+2) private API 
+-------------
+	It is also known as internal API.
+	It is available for use within the enterprise to connect the systems.	
+
+3) partner API 
+-------------
+	It is available to specficially selected and authorized outside developers.
+
+4) composite API 
+---------------
+	It is generally combination of two or more API's.
+
+
+
+Q) What is the Difference between @RequestBody and @ResponseBody?
+
+@RequestBody					@ResponseBody
+-------------					---------------
+This annotation indicates that Spring should 	This annotation indicates that Spring should
+deserialize HttpRequest body(JSON) into Java 	serialize java object into JSON or XML or simple
+object.						text.			
+
+It is used with POST, PUT & PATCH methods.	It is used with GET method.
+
+Applicable for incoming request data.		Applicable for outgoing response data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

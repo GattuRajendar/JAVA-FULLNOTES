@@ -1,0 +1,334 @@
+
+Q)List out some sterotype Annotation?
+
+	@Component
+	@Configuration
+	@Service	
+	@Repository
+	@Controller
+	and etc.
+
+
+Q)In spring boot mvc based web application who will pass HTTP request to controller?
+
+ans)	DispatcherServlet
+
+
+Q)Tomcat embedded server by default runs under which port no?
+	
+	8080
+
+Q)To create a spring mvc based web application we need to add which starter?
+	
+	spring-boot-stater-web
+
+
+Q)How to change default port number of Tomcat server in spring boot?
+ans)
+	application.properties
+	-----------------------------
+	server.port = 9090
+
+
+
+
+
+Spring Data JPA
+==================
+Spring Data JPA aims to improve the implementation of data access layer by reducing the efforts.
+
+It makes the implementation of our persistence layer easier and faster.
+
+It reduces the boilerplate code required by JPA(Java Persistence API). 
+
+It handles most of the complexity of JDBC-based database access and ORM (Object Relational Mapping).
+
+Spring Boot provides spring-boot-starter-data-jpa dependency to connect Spring application with relational database efficiently. 
+ex:
+
+	<dependency>  
+	<groupId>org.springframework.boot</groupId>  
+	<artifactId>spring-boot-starter-data-jpa</artifactId>  
+	<version>2.2.2.RELEASE</version>  
+	</dependency>  
+
+The spring-boot-starter-data-jpa internally uses the spring-boot-jpa dependency.
+
+
+Spring Data JPA provides three repositories are as follows:
+
+1) CrudRepository 
+---------------	
+	It provides CRUD functions.
+
+2) PagingAndSortingRepository
+----------------------------
+	It extends CrudRepository.
+	It provides methods to do pagination and sorting of records.
+
+3)JpaRepository
+----------------
+	It extends CrudRepository and PagingAndSortingRepository.
+	It provides JPA-related methods such as flushing the persistence context and 
+	deleting records in a batch.
+
+
+Spring Boot application interact with H2 Database
+===================================================
+
+Project structure
+-----------------
+MVCApp2
+|
+|---src/main/java
+	|
+	|---com.ihub.www
+		|
+		|----MVCApp2Application.java
+		|
+	|---com.ihub.www.controller
+		|
+		|----EmployeeController.java
+	|
+	|---com.ihub.www.model	
+		|
+		|----Employee.java
+		
+
+	|---com.ihub.www.repository
+		|
+		|----EmployeeRepository.java (interface)
+
+|---src/main/resources
+	|
+	|---aplication.properties
+
+|---src/test/java
+	|
+	|---com.ihub.www
+		|
+		|----MVCApp2ApplicationTests.java
+|
+|-----src
+	|
+	|-----main
+		|
+		|---index.jsp 
+|
+|-----pom.xml
+
+step1:
+------
+	Launch STS IDE by choosing workspace location.
+
+step2:
+------
+	create a spring boot project i.e "MVCApp2".
+	ex:
+		starters: 
+				Spring Web 		
+				Spring Data Jpa 
+				H2 Database 
+
+step2:
+------
+	Add Tomcat Embed Jasper dependency inside "pom.xml" file.
+	ex:
+		<dependency>
+    			<groupId>org.apache.tomcat.embed</groupId>
+    			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+
+step3:
+------
+	create a "index.jsp" file inside "src/main" folder.
+	ex:
+		
+index.jsp
+---------
+<center>
+	<h1><u>Enter the Details</u></h1>
+	<br>
+	<form  action="">
+		<table>
+			<tr>
+				<td>Id:</td>
+				<td><input type="text" name="t1"/></td>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" name="t1"/></td>
+			</tr>
+			<tr>
+				<td>Address:</td>
+				<td><input type="text" name="t1"/></td>
+			</tr>
+			<tr>
+				<td><input type="reset" value="reset"/></td>
+				<td><input type="submit" value="submit"/></td>
+			</tr>
+		</table>
+	</form>
+</center>
+
+step4:
+-----
+	Create  a "Employee.java" file inside "com.ihub.www.model" package.
+
+Employee.java
+-------------
+package com.ihub.www.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="employees")
+public class Employee 
+{
+	@Id
+	private int empId;
+	
+	@Column
+	private String empName;
+	
+	@Column
+	private String empAdd;
+
+	public int getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getEmpAdd() {
+		return empAdd;
+	}
+
+	public void setEmpAdd(String empAdd) {
+		this.empAdd = empAdd;
+	}
+}
+
+
+step5:
+-----
+	Create a "EmployeeRepository.java" file inside "com.ihub.www.repostory" pkg.
+
+EmployeeRepository.java
+-----------------------
+package com.ihub.www.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.ihub.www.model.Employee;
+
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee,Integer>
+{
+
+}
+
+
+
+
+step6:
+-----
+
+	Create a "HomeController.java" file inside 
+	"src/main/java/com.ihub.www" package.
+
+HomeController.java
+-------------------
+package com.ihub.www.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ihub.www.model.Employee;
+import com.ihub.www.repository.EmployeeRepository;
+
+@Controller
+public class EmployeeController 
+{
+	@Autowired
+	EmployeeRepository employeeRepository;
+	
+	@RequestMapping("/test")
+	public String home()
+	{
+		return "index.jsp";
+	}
+	
+	@RequestMapping("/addEmp")
+	public String addEmployee(Employee employee)
+	{
+		employeeRepository.save(employee);
+		
+		return "index.jsp";
+	}
+}
+
+
+
+
+
+step7:
+----
+	Add port number and database configurations inside 
+	application.properties file.	
+
+application.properties 
+--------------------
+server.port=9191
+
+
+spring.datasource.url= jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.h2.console.enabled=true
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+
+
+
+
+step8:
+------
+	Test the spring boot application.
+	ex:
+		http://localhost:9191
+		http://localhost:9191/h2-console
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+

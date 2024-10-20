@@ -1,0 +1,133 @@
+Q) What is Spring?
+
+It is a open source,leight weight, non-invensive, loosely coupled, aspect oriented, dependency injection java base application framework which is used to develop all kinds of applications. 
+
+
+Q) Explain modules in Spring ?
+
+Diagram: sb2.1
+
+CORE Module
+----------
+It is a base module to learn other modules in spring framework.
+
+Using core module we perform following things.
+
+1) To obtain the containers
+
+2) To perform dependency injections 
+
+3) To create spring beans
+
+
+AOP Module
+-----------
+AOP stands for Aspect Oriented Programming.
+This module is used to inject and remove the middleware services to/from application.
+
+
+DAO Module
+----------
+DAO stands Data Access Object.
+It is a abstract layer on JDBC.
+DAO module is used to convert checked exceptions to unchecked exception so we don't need to handle the exceptions.
+
+
+ORM Module
+----------
+ORM stands for Object Relational Mapping.
+ORM is a abstract layer on ORM tools like hibernate.
+In hibernate, While sending the data in the form of objects we have some limitations and those limitations are removed from ORM module.
+
+
+JEE Module
+----------
+JEE module is used to develop middleware services.
+
+
+MVC Module
+----------
+MVC stands for Model View Controller.
+MVC module is used to develop MVC based web applications.
+
+
+
+
+
+Q) What is the difference between spring framework and spring boot?
+
+Spring framework				Spring boot
+------------------				------------
+It is a open source, leight weight,loosely 	Spring Boot is built on top of spring framework
+coupled, aspect oriented, dependency injection	and it is widely used to develop REST APIs.
+java base application framework which is used
+to develop all kinds of applications.
+					
+The most important feature of the Spring 	The most important feature of the Spring Boot is
+Framework is dependency injection.		Autoconfiguration.
+
+It helps to create a loosely coupled 		It helps to create a stand-alone application.
+application.					
+
+To run the Spring application we need to set 	Spring Boot provides embedded servers such as 
+the server explicitly.				Tomcat, Jetty and undertow.
+						
+It doesn’t provide support for the in-memory 	It provides support for the in-memory database 
+database.					such as H2, HSQL, Derby.
+							
+
+Dependencies will be added by the programmer 	Dependencies will be added by the spring boot 
+in pom.xml file. 				component called starters.	
+						
+
+						
+
+Q) How many components are there in spring boot?
+
+We have four components in spring boot.
+
+1) Autoconfiguration 
+
+2) Starters
+
+3) Actuators
+
+4) CLI tool
+
+
+Q) How many containers are there in spring framework?
+
+We have two containers.
+
+1) BeanFactory 
+
+2) ApplicationContext 
+
+
+
+
+Q) Explain spring MVC Architecture ?
+
+Diagram: sb2.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

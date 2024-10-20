@@ -1,0 +1,292 @@
+Q) In how many ways we can create a spring boot project?
+
+There are two ways to create a spring boot project.
+
+1) Using spring Initializr
+
+2) Using IDE's (STS / Intellij)
+
+
+
+
+Q) What is spring initializr?
+
+It is a web based tool for create spring boot project structures.
+ex:
+	https://start.spring.io/
+
+
+Q) Where do we perform configurations in spring boot?
+
+	application.properties 
+	or
+	application.yml 
+
+
+
+
+STS IDE
+========
+Download link:   https://spring.io/tools
+
+ex:
+D>java   -jar  spring-tool-suite-4-4.23.1.RELEASE-e4.32.0-win32.win32.x86_64.self-extracting.jar 
+
+
+
+
+First spring boot application development
+=========================================
+FirstSB
+|
+|---src/main/java
+	|
+	|---com.ihub.www (base package)
+		|
+		|---FirstSBApplication.java
+|
+|---src/main/resources
+		|
+		|---application.properties
+|
+|---src/java/test
+|
+|---pom.xml 
+
+step1:
+------
+	Launch STS IDE by choosing workspace location.
+
+step2:
+------
+	Create spring starter project i.e FirstSB.
+	ex:
+		File --> new --> spring starter project --> 
+
+		Name : FirstSB
+		
+		Type  : Maven		packaging : jar 
+		
+		Java version : 17 	language : java 
+
+		Group  : com.ihub.www
+
+		Artifact : FirstSB
+	
+		Description : Demo project for Spring Boot
+
+		package : com.ihub.www   --> Next --> Next --> Finish.
+
+step3:
+-----
+	Write custom message inside FirstSbApplication.java file.
+	
+FirstSbApplication.java
+------------------------
+package com.kits.www;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class FirstSbApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FirstSbApplication.class, args);
+		
+		System.out.println("I Love Spring Boot");
+	}
+
+}
+
+step4:
+------
+	Run the spring boot project.
+	ex:
+		right click to FirstSB project --> run as --> Spring boot application.
+
+
+
+Q) What is @SpringBootApplication annotation?
+
+@SpringBootApplication annotation is a combination of three annotations.
+
+1) @EnableAutoConfiguration 
+---------------------------
+	It is used to enable auto configuration mechanism in spring boot.
+
+2) @ComponentScan
+----------------
+	It is used to scan on package in which our project is located.
+
+3) @Configuration 
+---------------
+	It is used to add extra beans on context.
+
+
+
+Spring Boot Starters
+=====================
+Spring boot contains number of starters to add jar files in the classpath.
+
+Spring boot having built-in starters to develop applications easily and rapidly.
+
+Spring boot starters are also known as dependency descriptors.
+
+In spring boot, built-in starts follow below naming pattern.
+
+ex:
+	spring-boot-starter-*
+
+	Here '*' indicates perticular name of the application.
+
+	spring-boot-starter-test 
+	spring-boot-starter-web 
+	spring-boot-starter-data-jpa
+	spring-boot-starter-validation
+	and etc.
+
+
+
+spring web dependency
+=====================
+If we want to develop web applications in spring boot then we need to use spring web dependency.
+
+There are two important features of spring-boot-starter-web.
+
+1) It is compatible with web application.
+
+2) It performs AutoConfiguration. 
+
+Spring web dependency internally uses Spring MVC, REST  and Tomcat embedded server.
+
+In spring-boot-starter-web , auto-configuration mechanism required following things.
+
+1) Dispatcher Servlet 
+2) Error Pages 
+3) Manage static dependencies
+4) Embedded Servlet container
+
+
+Second spring boot application development
+--------------------------------------------
+SecondSB
+|
+|---src/main/java
+	|
+	|---com.ihub.www (base package)
+		|
+		|---SecondSBApplication.java
+		|
+	|----com.ihub.www.controller
+		|
+		|---HomeController.java
+|
+|---src/main/resources
+		|
+		|---application.properties
+|
+|---src/java/test
+|
+|---pom.xml 
+
+step1:
+------
+	Launch STS IDE by choosing workspace location.
+
+step2:
+------
+	Create spring starter project i.e SecondSB.
+	ex:
+		File --> new --> spring starter project --> 
+
+		Name : SecondSB
+		
+		Type  : Maven		packaging : jar 
+		
+		Java version : 17 	language : java 
+
+		Group  : com.ihub.www
+
+		Artifact : SecondSB
+	
+		Description : Demo project for spring web application
+
+		package : com.ihub.www   --> Next 
+
+		starter  : spring  web 
+			
+		--> Next --> Finish.
+
+step3:
+-----
+	Create a HomeController.java class inside "com.ihub.www.controller" package.
+	ex:
+		right click to src/main/java -->  --> new --> class -->
+		Package : com.ihub.www
+		Name : HomeController 
+		--> Finish.
+
+HomeController.java
+--------------------
+package com.ihub.www.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class HomeController 
+{
+	@RequestMapping("/home")
+	@ResponseBody
+	public String home()
+	{
+		return "I Love Spring Boot Programming";
+	}
+}
+
+step4:
+-----
+	Configure Tomcat server port number in application.properties file.
+
+application.properties
+----------------------
+server.port=9090
+
+step5:
+------
+	Run the spring boot project.
+	ex:
+		right click to SecondSB  --> run as --> run on server.
+
+step6:
+-----
+	Test the application by using below  request url.
+	ex:
+		http://localhost:9090/home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

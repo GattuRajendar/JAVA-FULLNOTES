@@ -1,0 +1,159 @@
+Spring Security
+===============
+Spring Security is a framework which provides various security features like: authentication, authorization to create secure Java Enterprise Applications.
+
+It is a sub project spring framework which is developed in 2003 by Ben Alex.
+
+Later , In 2004 it was released under the licence of Apache as Spring 2.0.0
+
+This framework targets two major areas i.e authentation and autherization.
+
+
+Authentication
+----------------
+The process of confirming the identity of a user is called authentication.
+
+
+Autherization 
+-------------
+It is a process of giving the privileges to the resources is called autherization.
+
+Project Structure
+------------------
+SpringSecurity
+|
+|---src/main/java
+|	|
+	|---com.ihub.www
+		|
+		|---SpringSecurityApplication.java
+	|
+	|---com.ihub.www.controller
+		|
+		|---MyController.java
+		|
+
+|---src/main/resources
+		|
+		|---application.properties 
+|
+|---src/test/java
+|
+|---pom.xml 
+
+
+step1:
+-----
+	Create a spring boot starter project i.e SpringSecurity.
+	ex:
+		staters:
+			spring web 
+			spring security
+
+step2:
+-----
+	Create a "com.ihub.www.controller" package inside "src/main/java".
+	
+	
+
+step3:
+-----
+	Create a MyController.java file inside "com.ihub.www.controller" package.
+	
+MyController.java
+-----------------
+package com.ihub.www.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MyController 
+{
+	@GetMapping("/home")
+	public String home()
+	{
+		return "I Love Spring Security";
+	}
+}
+
+step4:
+-----
+	Configure server port in application.properties.
+
+application.properties
+---------------------
+server.port= 9090
+
+spring.security.user.name=raja
+spring.security.user.password=rani
+
+
+step5:
+------
+	Run the spring boot project.
+
+
+
+Interview Question
+-----------------
+Q) What is the difference between application.properties and application.yml?
+
+application.properties			application.yml
+----------------------			----------------
+It follows non-hierarchical structure.	It follows hierarchical structure.
+
+
+We can configure only one spring 	We can configure multiple spring profiles.
+profile.				
+
+It is primarily used in java.		It is used in many languages like Java, python, 
+					Ruby and etc.
+
+Supports key/val, but doesn’t support 	Supports key/val, basically map, List and scalar 
+values beyond the string.		types (int, string etc.)
+
+
+
+					
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

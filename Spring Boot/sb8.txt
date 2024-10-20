@@ -1,0 +1,358 @@
+Custom Queries in Spring Boot 
+=============================
+To declare custom queries in spring boot we need to use @Query annotation.
+
+@Query Annotation supports both JPQL and native SQL queries. 
+
+
+
+Project structure
+----------------
+
+customer-service2
+|
+|---src/main/java
+	|
+	|---com.ihub.www	
+	|
+	|---com.ihub.www.model
+		|
+		|---Customer.java
+	|
+	|---com.ihub.www.repo
+		|
+		|---CustomerRepository.java (Interface)
+	|
+	|---com.ihub.www.controller
+		|
+		|---CustomerController.java
+	|
+	|---com.ihub.www.service
+		|
+		|---CustomerService.java 
+	
+|----src/main/resources
+	|
+	|---application.yml
+|
+|----pom.xml 
+
+
+Starters:
+---------
+	Spring Web 
+	Spring Data JPA
+	Lombok
+	MySQL Driver 
+
+
+Customer.java
+---------------
+package com.ihub.www.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer 
+{
+	@Id
+	private int custId;  
+	
+	@Column
+	private String custName;
+	
+	@Column
+	private String custAdd;
+}
+
+CustomerRepository
+-----------------
+package com.ihub.www.repo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.ihub.www.model.Customer;
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Integer>
+{
+	public List<Customer> findByCustName(String custName);
+
+	//JPQL query 
+	@Query("select c from Customer c")
+	public List<Customer> allCustomers();
+	
+	//native SQL query
+	@Query(value="select * from customer", nativeQuery = true)
+	public List<Customer> getCustomers2();
+}
+
+CustomerController.java
+--------------------
+package com.ihub.www.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ihub.www.model.Customer;
+import com.ihub.www.service.CustomerService;
+
+@RestController
+@RequestMapping("/customer")
+public class CustomerController {
+	
+	@Autowired
+	CustomerService customerService;
+	
+	@GetMapping("/find/{custName}")
+	public List<Customer> getUserByName(@PathVariable String custName)
+	{
+		return customerService.getUserByName(custName);
+	}
+
+	@GetMapping("/find")
+	public List<Customer> findAllCustomers()
+	{
+		return customerService.findAllCustomers();
+	}
+	
+	@GetMapping("/search")
+	public List<Customer> findAllCustomers2()
+	{
+		return customerService.findAllCustomers2();
+	}
+	
+}
+
+
+CustomerService.java
+---------------------
+package com.ihub.www.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import com.ihub.www.exception.ResourceNotFoundException;
+import com.ihub.www.model.Customer;
+import com.ihub.www.repo.CustomerRepository;
+
+@Service
+public class CustomerService 
+{
+	@Autowired
+	CustomerRepository customerRepository;
+	
+	public List<Customer> getUserByName(String custName)
+	{
+		return customerRepository.findByCustName(custName);
+	}
+
+	public List<Customer> findAllCustomers()
+	{
+		return customerRepository.allCustomers();
+	}
+	
+	public List<Customer> findAllCustomers2()
+	{
+		return customerRepository.getCustomers2();
+	}
+}
+
+application.yml
+--------------------
+server:
+  port: 9090
+  
+spring:
+  application:
+    name: CUSTOMER-SERVICE
+    
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true 
+
+
+
+
+
+Eureka Server
+==============
+Eureka server is used to hold information about client service applications. 
+
+Each microservice registers into Eureka server and eureka server knows all client applications 
+running on each port and IP Address.
+
+Eureka server is also known as discovery server.
+
+Diagram: sb8.1
+
+step1:
+-----
+	Add Eureka client dependency in "customer-service" project.
+	ex:
+		starter:
+				Eureka Discovery Client
+
+step2:
+------
+	create a "service-registry" to register all microservices.
+	ex:
+		starter:
+				Eureka Server 
+
+step3:
+------
+	Add @EnableEurekaServer annotation in main spring boot application.
+
+
+ServiceRegistryApplication.java
+------------------------------
+package com.kits.www;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class ServiceRegistryApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ServiceRegistryApplication.class, args);
+	}
+
+}
+
+step4:
+-----
+	Convert application.properties file to application.yml file.
+
+
+
+step5:
+------
+	Configure server port and register with eureka server as false.
+
+application.yml 
+---------------
+server:
+  port: 8761
+  
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+
+step6:
+-----
+	Open "customer-service" project and configure Register with eureka as 
+	true in application.yml file. 
+
+application.yml
+---------------
+server:
+  port: 9090
+  
+spring:
+  application:
+    name: CUSTOMER-SERVICE
+    
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true   
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost    
+
+step7:
+------
+	Run two spring boot projects.
+
+	Note:
+		First run service-registry then customer-service.  
+      
+step8:
+-----
+	Test the application by using below request url.
+	ex:
+		http://localhost:8761/
+		http://localhost:9090/customer/fetch
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

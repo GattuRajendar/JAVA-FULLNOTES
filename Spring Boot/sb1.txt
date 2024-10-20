@@ -1,0 +1,76 @@
+Limitations With Spring Framework
+=================================
+In spring framework a programmer is responsible for following things.
+
+1) Adding dependencies or jar files. 
+
+2) Performing configurations in applicationContext.xml file.
+
+3) Arranging physical server like Tomcat.
+
+4) Managing physical database like MySQL. 
+
+To overcome above limitations we need to use Spring Boot.
+
+
+Spring Boot
+============
+It is a java based application framework developed by Pivotal Team.
+
+It provides RAD(Rapid Application Development) features for spring based applications.
+
+It is a standalone, production ready grade spring based applications with minimum configurations.
+
+In short, spring boot is a combination of
+
+ex:
+	spring framework       +   Embedded  Server   +   Embedded Database
+
+Spring Boot does not support xml configurations instead it will use annotations.
+
+Note:
+-----
+	Developer  ---------------> Spring Boot ----------------> Spring Framework 
+
+
+
+Advantages with Spring Boot
+=============================
+1) It is used to develop standalone applications which can be run by using java -jar.
+
+2) It provides optionate starters to simplify the maven development process.
+
+3) It tests the web applications by using HTTP servers like Tomcat, Jetty and Undertow.
+
+4) It does not support xml configurations.
+
+5) It provides product ready grade features like metrix, Healthcheck, externalized configurations
+   and etc.
+
+6) It provides CLI(Command Line Interface)  Tool to develop and testing spring boot application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
